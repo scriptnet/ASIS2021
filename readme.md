@@ -8,7 +8,7 @@ SISTEMA BÁSICO DE CONTROL DE ASISTENCIA WEB
 ## Características ✨
 
 -	Backend: PHP 7.2+
--	Frondend: Angularjs y Bootstrap
+-	FrontEnd: Angularjs y Bootstrap
 -	Base de datos: MYSQL
 
 ## Modulos ✨
