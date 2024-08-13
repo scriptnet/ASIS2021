@@ -38,14 +38,14 @@ Configura la conexión a la base de datos. Abre el archivo admin/config/class.Da
 
 ## Configuración de las vistas
 admin\static\core\constants\constants.js
-```
+```yaml
 NOMBREEMPRESA: "INSTITUCIÓN", (Nombre de la isntitucion para el pdf)
 BASE_HREF: "http://localhost/asistencia/admin/view/", (Vistas)
 BACKGROUNDPDF: (aqui va la imagen de fondo del pdf)
     
 ```
 
-## Usuari y contraseña
+## Usuario y contraseña
 
 ```yaml
    Usuario: SCRIPTNET
