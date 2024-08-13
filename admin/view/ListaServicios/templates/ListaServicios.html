@@ -1,0 +1,203 @@
+<section _ngcontent-c9 class="container list-schedule-transfer">
+    <div _ngcontent-c9="" class="col-12 transfers-title">
+        Servicios
+    </div>
+    <div class="row" ng-if="cargando1">
+        <div class="col-12 col-md-12 products-container-responsive">
+
+            <div class="spinner">
+                <img src="static/img/spinner/spinner.svg" alt="spinner">
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-if="!cargando1">
+        <div class="col-12 col-md-12 products-container-responsive">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-10 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">Listar Servicios</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div _ngcontent-c15 class="col-2">
+                        <md-button class="md-raised" type="button" ng-click="NuevoServicio()">Agregar</md-button>
+                    </div>
+                </div>
+
+
+                <div class="accounts-m-container-uncollapsed">
+                    <div class="content-card">
+                        <table role="table" class="table table-bordered">
+                            <thead role="rowgroup">
+                                <tr role="row">
+                                    <th role="columnheader">FECHA</th>
+                                    <th role="columnheader">DESCRIPCIÓN</th>
+                                    <th role="columnheader">MONTO</th>
+
+                                    <!-- <th role="columnheader">HORARIO</th> -->
+                                    <th role="columnheader">OPCIONES</th>
+
+                                </tr>
+                            </thead>
+                            
+                            <tbody role="rowgroup">
+                                <tr role="row" ng-repeat="servicio in servicios">
+                                    <td role="cell">{{servicio.Ser_Fecha | date:"dd-MM-y"}}</td>
+                                    <td role="cell">{{servicio.Serv_Descripcion}}</td>
+                                    <td role="cell">{{servicio.Serv_Monto | currency: "S/."}}</td>
+
+
+
+
+
+                                    <td role="cell">
+                                        <!-- <md-button class="md-raised" style="min-height: 26px; line-height: 26px;" data-toggle="modal" data-target="#exampleModal">EDITAR</md-button> -->
+                                        <a href="" ng-click="editServicio(servicio)"><i class="icon bcp-pen-o six-digit-password-icon" clickoutside="" triggers="" ng-click="editEmpleado(empleado)"></i></a>
+                                        <a href="" ng-click="eliminarServicio(servicio.id_Serv)"><i class="icon bcp-trash-f six-digit-password-icon" clickoutside="" triggers="" ng-click="editEmpleado(empleado)"></i></a>
+                                        <!-- <a href=""><i class="icon bcp-trash-o six-digit-password-icon" clickoutside="" triggers=""></i></a> -->
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <!-- <div class="">
+                            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap class="layout-wrap layout-sm-column layout-align-center-center layout-row" style="justify-content: flex-end;">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+
+
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </section>
+
+                        </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- modal -->
+
+<div class="modal fade bd-example-modal-lg" id="editServicio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div _ngcontent-c19 class="modal-dialog  modal-lg" role="document">
+        <form name="forma" ng-submit="guardarServicio(ServicioSelect)">
+
+            <div _ngcontent-c19 class="modal-content">
+                <div class="modal-header">
+                    <div class="d-block blocking-type-modal"></div>
+                </div>
+
+                <div class="modal-body" style="text-align: left;">
+
+                    <div class="body-title">
+
+                        <h4 _ngcontent-c101="" class="fl-text-capitalize">{{title}}</h4>
+
+                        <!-- <h3 _ngcontent-c101="" class="fl-text-capitalize">Definir hora de salida y entrada</h3> -->
+
+                    </div>
+
+                    <div _ngcontent-c101="" body="" class="body-content">
+                        <!-- <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre> -->
+                        <!-- <h4>Inline</h4> -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div>
+
+
+
+                                    <md-input-container class="md-block">
+                                        <label>Fecha</label>
+                                        <input type="text" class="form-control" required uib-datepicker-popup="{{format}}" name="fecha" ng-model="Ser_Fecha">
+                                        <div ng-messages="forma.fecha.$error">
+                                            <div ng-message="parse">El formato de fecha es {{format}}</div>
+                                            <div ng-message="required">Es requerido</div>
+                                            <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                                        </div>
+                                    </md-input-container>
+                                    <!-- <pre>forma.fecha.$error = {{forma.fecha.$error | json }}</pre> -->
+
+
+
+                                    <!-- <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 ">
+                                <md-input-container class="md-block">
+                                    <label>DESCRIPCIÓN</label>
+                                    <input type="text" md-maxlength="50" required md-no-asterisk name="Serv_Descripcion" ng-model="ServicioSelect.Serv_Descripcion">
+                                    <div ng-messages="forma.Serv_Descripcion.$error">
+                                        <div ng-message="required">Es requerido</div>
+                                        <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="col-12 col-md-6 ">
+                                <md-input-container class="md-block">
+                                    <label>MONTO</label>
+                                    <input type="text" md-maxlength="50" required md-no-asterisk name="Serv_Monto" ng-model="ServicioSelect.Serv_Monto">
+                                    <div ng-messages="forma.Serv_Monto.$error">
+                                        <div ng-message="required">Es requerido</div>
+                                        <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="modal-footer d-flex flex-wrap justify-content-center">
+
+                                <button _ngcontent-c101="" type="button" class="btn btn-secondary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted" data-dismiss="modal">cancelar</button>
+                                <button _ngcontent-c101="" type="submit" ng-disabled="forma.$invalid" class="btn btn-primary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted">guardar</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+
+</div>

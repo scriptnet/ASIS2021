@@ -1,0 +1,277 @@
+<section _ngcontent-c9 class="container list-schedule-transfer">
+    <div _ngcontent-c9="" class="col-12 transfers-title">
+        Listado de Empleados
+    </div>
+    <!-- <div class="row" ng-if="cargando1">
+        <div class="col-12 col-md-12 products-container-responsive">
+
+            <div class="spinner">
+                <img src="static/img/spinner/spinner.svg" alt="spinner">
+            </div>
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-12 col-md-12 products-container-responsive">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row ">
+                    <div _ngcontent-c15 class="col-3 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">Empleados</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9" style="padding-right: 45px;">
+                        <div _ngcontent-c73="" class="search-component ">
+                            <div _ngcontent-c73=" " class="search dropdown " style="padding: 0px">
+                                <div _ngcontent-c73=" " class="form-group form-group2 form-group--relative form-group--stacked " style="margin-top: 0px; ">
+
+                                    <input _ngcontent-c73=" " type="text " placeholder="Buscar " ng-model="queryEmpleados.filter " name="buscar " autocomplete="off " class="form-control " style="padding: 4px 18px 0px 10px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="accounts-m-container-uncollapsed">
+                    <div class="content-card">
+                        <table role="table" class="table table-bordered">
+                            <thead role="rowgroup">
+                                <tr role="row">
+                                    <th role="columnheader">DNI</th>
+                                    <th role="columnheader">NOMBRES</th>
+                                    <th role="columnheader">APELLIDOS</th>
+                                    <th role="columnheader">PUESTO</th>
+                                    <th role="columnheader">CELULAR</th>
+                                    <th role="columnheader">FEC. NACIMIENTO</th>
+                                    <th role="columnheader">DIRECCIÓN</th>
+                                    <!-- <th role="columnheader">HORARIO</th> -->
+                                    <th role="columnheader">OPCIONES</th>
+
+                                </tr>
+                            </thead>
+                            <tbody role="rowgroup">
+                                <tr role="row" ng-repeat="empleado in empleados">
+                                    <td role="cell">{{empleado.E_DNI}}</td>
+                                    <td role="cell">{{empleado.E_Nombres}}</td>
+                                    <td role="cell">{{empleado.E_Apellidos}}</td>
+                                    <td role="cell"> <span ng-repeat="posi in empleado.POSICIONES">_{{posi.P_Descripcion}} 
+                                        <!-- <span ng-if="posi.P_Descripcion == 'Reemplazo'" style="color: #002da5; FONT-SIZE: 12PX;"> <br> ( {{posi.E_Apellidos}}, {{posi.E_Nombres}} - {{posi.DePo_FromRem}} )</span> -->
+                                        <br></span>
+                                    </td>
+                                    <td role="cell">
+                                        {{empleado.E_Info_Contacto}}
+                                    </td>
+                                    <td role="cell">{{empleado.E_Fecha_Nacimiento | date:'dd/MM/yyyy'}}</td>
+                                    <td role="cell">{{empleado.E_Direccion}}</td>
+                                    <!-- <td role="cell">
+                                        <div class=" d-flex flex-wrap justify-content-center">
+
+                                            <a href=""><i class="icon bcp-calendar-f six-digit-password-icon" clickoutside="" triggers="" data-toggle="modal" data-target="#exampleModal"></i></a>
+
+                                        </div>
+
+                                    </td> -->
+                                    <td role="cell">
+                                        <!-- <md-button class="md-raised" style="min-height: 26px; line-height: 26px;" data-toggle="modal" data-target="#exampleModal">EDITAR</md-button> -->
+                                        <a href=""><i class="icon bcp-pen-o six-digit-password-icon" clickoutside="" triggers="" ng-click="editEmpleado(empleado)"></i></a>
+                                        <!-- <a href=""><i class="icon bcp-trash-o six-digit-password-icon" clickoutside="" triggers=""></i></a> -->
+                                    </td>
+
+                                </tr>
+                                <div class="loader-medium" ng-show="cargando1">
+                                    <div class="content-medium">
+                                        <div class="spinnerV2"></div>
+                                        <div class="MessErr" ng-if="actualizar">
+                                            {{messajeErr}}
+                                            <br>
+                                            <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <div class=" ">
+                            <section layout="row " layout-sm="column " layout-align="center center " layout-wrap class="layout-wrap layout-sm-column layout-align-center-center layout-row " style="justify-content: flex-end; ">
+                                <div style="padding-right: 15px; padding-bottom: 15px;">
+                                    Total: {{paginacion.conteo}}
+                                </div>
+
+                                <nav aria-label="Page navigation example ">
+
+                                    <ul class="pagination ">
+                                        <li class="page-item " ng-class="{disabled:  paginacion.pag_anterior == paginacion.total_paginas }">
+                                            <a class="page-link " href="" ng-click="calldataEmpleados(queryEmpleados.page = paginacion.pag_anterior)" aria-label="Previous ">
+                                                <span aria-hidden="true ">&laquo;</span>
+                                                <span class="sr-only ">Previous</span>
+                                            </a>
+                                        </li>
+
+                                        <!-- <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+
+                                        <li class="page-item" ng-class="{disabled:  paginacion.pag_siguiente == 1 }">
+                                            <a class="page-link " href="" ng-click="calldataEmpleados(queryEmpleados.page = paginacion.pag_siguiente)" aria-label="Next ">
+                                                <span aria-hidden="true ">&raquo;</span>
+                                                <span class="sr-only ">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </section>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- modal -->
+
+<div class="modal fade bd-example-modal-lg" id="editarEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div _ngcontent-c19 class="modal-dialog  modal-lg" role="document">
+        <form name="forma" ng-submit="guardarEmpleado(empleadoSelec)">
+
+            <div _ngcontent-c19 class="modal-content">
+                <div class="modal-header">
+                    <div class="d-block blocking-type-modal"></div>
+                </div>
+
+                <div class="modal-body" style="text-align: left;">
+
+                    <div class="body-title">
+
+                        <h4 _ngcontent-c101="" class="fl-text-capitalize">EDITAR EMPLEADO</h4>
+
+                        <!-- <h3 _ngcontent-c101="" class="fl-text-capitalize">Definir hora de salida y entrada</h3> -->
+
+                    </div>
+
+                    <div _ngcontent-c101="" body="" class="body-content">
+
+                        <div class="row">
+                            <div class="col-12 col-md-6 ">
+                                <md-input-container class="md-block">
+                                    <label>NOMBRE</label>
+                                    <input type="text" md-maxlength="50" required md-no-asterisk name="P_Descripcion" ng-model="empleadoSelec.E_Nombres">
+                                    <div ng-messages="forma.P_Descripcion.$error">
+                                        <div ng-message="required">Es requerido</div>
+                                        <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="col-12 col-md-6 ">
+                                <md-input-container class="md-block">
+                                    <label>APELLIDOS</label>
+                                    <input type="text" md-maxlength="50" required md-no-asterisk name="P_Descripcion" ng-model="empleadoSelec.E_Apellidos">
+                                    <div ng-messages="forma.P_Descripcion.$error">
+                                        <div ng-message="required">Es requerido</div>
+                                        <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-6 ">
+                                <md-input-container class="md-block">
+                                    <label>FECHA DE NACIMIENTO</label>
+                                    <input type="text" md-maxlength="50" required md-no-asterisk name="P_Descripcion" ng-model="empleadoSelec.E_Fecha_Nacimiento">
+                                    <div ng-messages="forma.P_Descripcion.$error">
+                                        <div ng-message="required">Es requerido</div>
+                                        <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="col-12 col-md-6 ">
+                                <md-input-container class="md-block">
+                                    <label>DIRECCIÓN</label>
+                                    <input type="text" md-maxlength="50" required md-no-asterisk name="P_Descripcion" ng-model="empleadoSelec.E_Direccion">
+                                    <div ng-messages="forma.P_Descripcion.$error">
+                                        <div ng-message="required">Es requerido</div>
+                                        <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 padreSelect">
+
+
+
+                                <label>POSICIÓN</label>
+
+                                <div>
+                                    <select id="select1" class="selectpicker" ng-model="empleadoSelec.posciArray" multiple title="Selecciona puesto" required>
+                                                <option value="{{posi.id_Posicion}}"  ng-repeat="posi in posiciondata"  >{{posi.P_Descripcion}}</option>
+                                                <!-- ng-disabled="posi.P_Descripcion == 'Reemplazo'" -->
+                                      </select>
+                                    <!-- <select class="selectpicker" ng-model="empleadoSelec.id_Posicion" name="slct" id="slct" multiple>
+                                            
+                                         <option  value="{{posi.id_Posicion}}" ng-repeat="posi in posiciondata">{{posi.P_Descripcion}}</option>
+                                             
+                                    </select> -->
+                                </div>
+
+
+
+
+                            </div>
+                            <div class="col-12 col-md-6 ">
+                                <md-input-container class="md-block">
+                                    <label>CELULAR</label>
+                                    <input type="text" md-maxlength="9" required md-no-asterisk name="P_Descripcion" ng-model="empleadoSelec.E_Info_Contacto">
+                                    <div ng-messages="forma.P_Descripcion.$error">
+                                        <div ng-message="required">Es requerido</div>
+                                        <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="modal-footer d-flex flex-wrap justify-content-center">
+
+                                <button _ngcontent-c101="" type="button" class="btn btn-secondary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted" data-dismiss="modal">cancelar</button>
+                                <button _ngcontent-c101="" type="submit" ng-disabled="forma.$invalid" class="btn btn-primary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted">guardar</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+
+</div>

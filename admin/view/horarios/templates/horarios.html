@@ -1,0 +1,463 @@
+<section _ngcontent-c9 class="container list-schedule-transfer">
+    <div _ngcontent-c9="" class="col-12 transfers-title">
+        Horarios
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-4 products-container-responsive">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-12 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">Selecionar Empleado</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <div _ngcontent-c73="" class="search-component " style="margin-left: 30px; margin-right: 30px;">
+                            <div _ngcontent-c73="" class="search dropdown">
+                                <div _ngcontent-c73="" class="form-group form-group--relative form-group--stacked">
+
+                                    <input _ngcontent-c73="" type="text" placeholder="Buscar" ng-model="queryEmpleados.filter" name="buscar" autocomplete="off" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12">
+
+
+                        <div _ngcontent-c35="" class="products-row-m" ng-repeat="empleado in empleados">
+                            <!-- ng-click="llamarHorarioV2(empleado, DiaStado)" -->
+                            <a href="" ng-click="llamarPuestos(empleado)" style="text-decoration: none; color: #002d87;">
+                                <div _ngcontent-c35="" class="product-account-wrapper">
+                                    <div _ngcontent-c35="" class="product-account-container">
+                                        <p _ngcontent-c35="" class="product-account-name">
+                                            {{empleado.E_Nombres}}
+                                        </p>
+                                        <p _ngcontent-c35="" class="product-account-number">
+                                            {{empleado.E_Apellidos}}
+                                        </p>
+                                    </div>
+
+
+
+                                </div>
+
+                            </a>
+
+
+                            <!---->
+
+                        </div>
+
+                        <div class="loader-medium" ng-show="cargando1">
+                            <div class="content-medium">
+                                <div class="spinnerV2"></div>
+                                <div class="MessErr" ng-if="actualizar">
+                                    {{messajeErr}}
+                                    <br>
+                                    <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class=" " style="margin-right: 30px;">
+                            <section layout="row " layout-sm="column " layout-align="center center " layout-wrap class="layout-wrap layout-sm-column layout-align-center-center layout-row " style="justify-content: flex-end; ">
+                                <!-- <div style="padding-right: 15px; padding-bottom: 15px;">
+                                    Total: {{paginacion.conteo}}
+                                </div> -->
+
+                                <nav aria-label="Page navigation example ">
+
+                                    <ul class="pagination ">
+                                        <li class="page-item " ng-class="{disabled:  paginacion.pag_anterior == paginacion.total_paginas }">
+                                            <a class="page-link " href="" ng-click="calldataEmpleados(queryEmpleados.page = paginacion.pag_anterior)" aria-label="Previous ">
+                                                <span aria-hidden="true ">&laquo;</span>
+                                                <span class="sr-only ">Previous</span>
+                                            </a>
+                                        </li>
+
+                                        <!-- <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+
+                                        <li class="page-item" ng-class="{disabled:  paginacion.pag_siguiente == 1 }">
+                                            <a class="page-link " href="" ng-click="calldataEmpleados(queryEmpleados.page = paginacion.pag_siguiente)" aria-label="Next ">
+                                                <span aria-hidden="true ">&raquo;</span>
+                                                <span class="sr-only ">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </section>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <div class="row">
+
+
+                <!-- fin primera caja -->
+                <div class="col-12 col-md-12 products-container-responsive">
+
+                    <div _ngcontent-c14 class="home-wrapper-shadow">
+                        <div _ngcontent-c15 class="row product-title-row">
+                            <div _ngcontent-c15 class="col-12 product-title-col">
+                                <div _ngcontent-c15 class="bar-product-container">
+                                    <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                                    <div _ngcontent-c33 class="product-icon-title-container">
+                                        <!-- | date:"MM/dd/yyyy 'at' h:mma" -->
+                                        <h3 _ngcontent-c15 class="product-title">Horario<span ng-if="!avisoSelect">:  {{datos.E_Nombres}} {{datos.E_Apellidos}} <span ng-if="!MostrarHorario">/ {{dataPuesto.P_Descripcion}}</span> </span>
+                                        </h3>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="loader-medium" ng-show="cargando2">
+                                <div class="content-medium">
+                                    <div class="spinnerV2"></div>
+                                    <div class="MessErr" ng-if="actualizar2">
+                                        {{messajeErr}}
+                                        <br>
+                                        <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- puestos disponibles -->
+                            <div class="container" ng-if="showpuesto">
+                                <div class="row">
+                                    <div _ngcontent-c57 class="col justify-content-lg-center mt-2">
+                                        <div _ngcontent-c57 class="">
+                                            <div class="row">
+                                                <div class="col-12 col-md-4" ng-repeat="puesto in puestosD">
+
+                                                    <div _ngcontent-c57 class="ml-40 my-2" ng-class="{'not-active': puesto.P_Descripcion == 'Reemplazo'}" style="margin-left: 30px;">
+                                                        <a href="" ng-click="llamarHorarioV2(puesto)" style="text-decoration: none;">
+                                                            <div _ngcontent-c58 class="card shadow2">
+                                                                <div _ngcontent-c58 class="card-body d-flex justify-content-around">
+                                                                    <div _ngcontent-c58 class="d-flex mr-auto flex-sm-column wrapper">
+                                                                        <div _ngcontent-c58 class="text-center mr-3 ml-sm-2 mt-sm-3">
+                                                                            <img _ngcontent-c58 src="static/img/puestos/imagen1.svg" alt="terceros">
+                                                                        </div>
+                                                                        <div _ngcontent-c58="" class="mb-sm-2">
+                                                                            <p _ngcontent-c58="" class="card-text">{{puesto.P_Descripcion}}</p>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div _ngcontent-c58="" class="text-center arrow">
+                                                                        <i _ngcontent-c58="" class="icon bcp-angle-right-f d-block d-sm-none"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                                    <div _ngcontent-c36="" class="content-empty-state-border">
+                                        <div _ngcontent-c36="" class="title">
+                                            <p _ngcontent-c36="" class="summary-title">
+                                                Selecciona su puesto. <span style="color: red;">{{mensajeVacio}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <!-- fin puestos disponibles -->
+                            <div class="accounts-m-container-uncollapsed">
+
+                                <div class="content-card">
+                                    <!-- aviso -->
+                                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap ng-if="avisoSelect">
+                                        <div _ngcontent-c36="" class="content-empty-state-border">
+                                            <div _ngcontent-c36="" class="title">
+                                                <p _ngcontent-c36="" class="summary-title">
+                                                    Selecciona un empleado para visualizar su horario.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </section>
+
+
+                                    <div ng-if="!cargando2">
+                                        <div class="schedule2" ng-if="!MostrarHorario">
+
+                                            <span class="track-slot2 track1-fondo colorHTitle" aria-hidden="true" style="grid-column: track-1; grid-row: tracks;">Lunes</span>
+                                            <span class="track-slot2 track2-fondo colorHTitle" aria-hidden="true" style="grid-column: track-2; grid-row: tracks;">Martes</span>
+                                            <span class="track-slot2 track1-fondo colorHTitle" aria-hidden="true" style="grid-column: track-3; grid-row: tracks;">Miercoles</span>
+                                            <span class="track-slot2 track2-fondo colorHTitle" aria-hidden="true" style="grid-column: track-4; grid-row: tracks;">Jueves</span>
+                                            <span class="track-slot2 track1-fondo colorHTitle" aria-hidden="true" style="grid-column: track-5; grid-row: tracks;">Viernes</span>
+                                            <span class="track-slot2 track2-fondo colorHTitle" aria-hidden="true" style="grid-column: track-6; grid-row: tracks;">Sábado</span>
+                                            <span class="track-slot2 track1-fondo colorHTitle" aria-hidden="true" style="grid-column: track-7; grid-row: tracks;">Domingo</span>
+
+                                            <div class="session-1 track-1" style="grid-column: track-1-start;">
+                                                <div class="flex-100 separadorH" ng-repeat="lunes1 in lunes">
+                                                    <span class="track-slot3 track1-fondo" ng-click="desactivar(lunes1.id_DDE)">E: {{lunes1.H_Entrada | formatoHora}} <br> S: {{lunes1.H_Salida | formatoHora}} </span>
+                                                </div>
+
+                                                <div class="flex-100 separadorH">
+
+                                                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="" class="layout-wrap layout-sm-column layout-align-center-center layout-row">
+                                                        <a href="" ng-click="definirHoraV2(1)"><i class="icon bcp-plus-f six-digit-password-icon" clickoutside="" triggers=""></i></a>
+
+                                                    </section>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="session-2 track-2" style="grid-column: track-2-start;">
+                                                <div class="flex-100 separadorH" ng-repeat="martes2 in martes">
+                                                    <span class="track-slot3 track2-fondo" ng-click="desactivar(martes2.id_DDE)">E: {{martes2.H_Entrada | formatoHora}} <br> S: {{martes2.H_Salida | formatoHora}} </span>
+                                                </div>
+
+                                                <div class="flex-100 separadorH">
+                                                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="" class="layout-wrap layout-sm-column layout-align-center-center layout-row">
+                                                        <a href="" ng-click="definirHoraV2(2)"><i class="icon bcp-plus-f six-digit-password-icon" clickoutside="" triggers=""></i></a>
+
+                                                    </section>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="session-3 track-1" style="grid-column: track-3-start;">
+                                                <div class="flex-100 separadorH" ng-repeat="miercoles3 in miercoles">
+                                                    <span class="track-slot3 track1-fondo" ng-click="desactivar(miercoles3.id_DDE)">E: {{miercoles3.H_Entrada | formatoHora}} <br> S: {{miercoles3.H_Salida | formatoHora}} </span>
+                                                </div>
+
+                                                <div class="flex-100 separadorH">
+                                                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="" class="layout-wrap layout-sm-column layout-align-center-center layout-row">
+                                                        <a href="" ng-click="definirHoraV2(3)"><i class="icon bcp-plus-f six-digit-password-icon" clickoutside="" triggers=""></i></a>
+
+                                                    </section>
+                                                </div>
+
+                                            </div>
+                                            <div class="session-3 track-2" style="grid-column: track-4-start;">
+                                                <div class="flex-100 separadorH" ng-repeat="jueves4 in jueves">
+                                                    <span class="track-slot3 track2-fondo" ng-click="desactivar(jueves4.id_DDE)">E: {{jueves4.H_Entrada | formatoHora}} <br> S: {{jueves4.H_Salida | formatoHora}} </span>
+                                                </div>
+
+                                                <div class="flex-100 separadorH">
+                                                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="" class="layout-wrap layout-sm-column layout-align-center-center layout-row">
+                                                        <a href="" ng-click="definirHoraV2(4)"><i class="icon bcp-plus-f six-digit-password-icon" clickoutside="" triggers=""></i></a>
+
+                                                    </section>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="session-3 track-1" style="grid-column: track-5-start;">
+                                                <div class="flex-100 separadorH" ng-repeat="viernes5 in viernes">
+                                                    <span class="track-slot3 track1-fondo" ng-click="desactivar(viernes5.id_DDE)">E: {{viernes5.H_Entrada | formatoHora}} <br> S: {{viernes5.H_Salida | formatoHora}} </span>
+                                                </div>
+
+                                                <div class="flex-100 separadorH">
+                                                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="" class="layout-wrap layout-sm-column layout-align-center-center layout-row">
+                                                        <a href="" ng-click="definirHoraV2(5)"><i class="icon bcp-plus-f six-digit-password-icon" clickoutside="" triggers=""></i></a>
+
+                                                    </section>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="session-3 track-2" style="grid-column: track-6-start;">
+                                                <div class="flex-100 separadorH" ng-repeat="sabado6 in sabado">
+                                                    <span class="track-slot3 track2-fondo" ng-click="desactivar(sabado6.id_DDE)">E: {{sabado6.H_Entrada | formatoHora}} <br> S: {{sabado6.H_Salida | formatoHora}} </span>
+                                                </div>
+
+                                                <div class="flex-100 separadorH">
+                                                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="" class="layout-wrap layout-sm-column layout-align-center-center layout-row">
+                                                        <a href="" ng-click="definirHoraV2(6)"><i class="icon bcp-plus-f six-digit-password-icon" clickoutside="" triggers=""></i></a>
+
+                                                    </section>
+                                                </div>
+
+                                            </div>
+                                            <div class="session-3 track-1" style="grid-column: track-7-start;">
+                                                <div class="flex-100 separadorH" ng-repeat="domingo7 in domingo">
+                                                    <span class="track-slot3 track1-fondo" ng-click="desactivar(domingo7.id_DDE)">E: {{domingo7.H_Entrada | formatoHora}} <br> S: {{domingo7.H_Salida | formatoHora}} </span>
+                                                </div>
+
+                                                <div class="flex-100 separadorH">
+                                                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="" class="layout-wrap layout-sm-column layout-align-center-center layout-row">
+                                                        <a href="" ng-click="definirHoraV2(7)"><i class="icon bcp-plus-f six-digit-password-icon" clickoutside="" triggers=""></i></a>
+
+                                                    </section>
+                                                </div>
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- fin row -->
+
+
+    </div>
+</section>
+
+
+
+<!-- modal -->
+
+<div class="modal fade" id="modal_Hora" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div _ngcontent-c19 class="modal-dialog  modal-custom" role="document">
+        <form ng-submit="enviarHoraNuevaV2(defhora)">
+
+            <div _ngcontent-c19 class="modal-content">
+                <div class="modal-header">
+                    <div class="d-block blocking-type-modal"></div>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="body-title">
+
+                        <h4 _ngcontent-c101="" class="fl-text-capitalize"> {{datos.E_Nombres}} {{datos.E_Apellidos}}</h4>
+
+                        <h3 _ngcontent-c101="" class="fl-text-capitalize">Definir hora de salida y entrada</h3>
+
+                    </div>
+
+                    <div _ngcontent-c101="" body="" class="body-content">
+                        <p _ngcontent-c101="">
+                            <div class="row">
+
+                                <div class="col-12 col-md-6">
+                                    ENTRADA:
+                                    <div uib-timepicker ng-model="defhora.hora1" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    SALIDA:
+                                    <div uib-timepicker ng-model="defhora.hora2" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                                </div>
+                            </div>
+
+
+
+                        </p>
+                        <span style="color: red;">{{horaEstadoMess}}</span>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="modal-footer d-flex flex-wrap justify-content-center">
+
+                                <button _ngcontent-c101="" type="button" class="btn btn-secondary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted" data-dismiss="modal">cancelar</button>
+                                <button _ngcontent-c101="" type="submit" class="btn btn-primary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted">guardar</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+
+</div>
+
+
+
+
+<!-- desactivar -->
+
+
+<div class="modal fade" id="Desactivar_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div _ngcontent-c19 class="modal-dialog  modal-custom" role="document">
+
+
+        <div _ngcontent-c19 class="modal-content">
+            <div class="modal-header">
+                <div class="d-block blocking-type-modal"></div>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="body-title">
+
+                    <h4 _ngcontent-c101="" class="fl-text-capitalize"> ¿DESACTIVAR?</h4>
+
+
+
+                </div>
+
+                <div _ngcontent-c101="" body="" class="body-content">
+                    <p _ngcontent-c101="">
+
+
+
+
+                    </p>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div class="modal-footer d-flex flex-wrap justify-content-center">
+
+                            <button _ngcontent-c101="" type="button" class="btn btn-secondary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted" data-dismiss="modal">NO</button>
+                            <button _ngcontent-c101="" type="button" ng-click="confirma()" class="btn btn-primary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted">SI</button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+</div>

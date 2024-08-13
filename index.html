@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="scriptnet">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SISTEMA | INDEX</title>
+</head>
+
+<body ng-controller="horarioCtrl as ctrl">
+    <link rel="stylesheet" href="static/bower_components/angular-material.css">
+    <script src="static/bower_components/jquery.min.js"></script>
+    <script src="static/bower_components/moment.js"></script>
+    <script src="static/bower_components/angular-1.7.6.js"></script>
+    <script src="static/bower_components/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="static/bower_components/angular-animate.min.js"></script>
+    <script src="static/bower_components/angular-aria.min.js"></script>
+    <script src="static/bower_components/angular-messages.min.js"></script>
+    <script src="admin/static/bower_components/angular-resource/angular-resource.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="static/bower_components/angular-material.js"></script>
+    <script src="static/app.js"></script>
+    <script src="static/service.js"></script>
+    <script src="static/factory.js"></script>
+    <link rel="stylesheet" href="static/app.css">
+
+
+    <div class="tablagen full-width full-height">
+        <div class="fila">
+            <div class="fondo columna">
+            </div>
+            <div class="columna">
+                <form name="userForm" ng-submit="ctrl.showCustomToast(datacod)">
+                    <div class="menu-demo-container title-color-date" layout-align="center center" layout="column">
+                        <!-- <p id="date"></p> -->
+                        <p id="date"></p>
+                    </div>
+                    <div class="menu-demo-container title-color" layout-align="center center" layout="column">
+                        <!-- <p id="date"></p> -->
+                        <p id="time" class="bold"></p>
+                    </div>
+
+                    <div class="centrado-form">
+                        <div keypress-events></div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <!-- <center><label>Ingrese la identificación del empleado</label></center> -->
+                            <input disabled name="social" ng-model="datacod" ng-pattern="/^[0-9]{8}$/" md-maxlength="8" minlength="8" style="border-style: initial; font-size: 208%; text-align: center;" required>
+
+                            <!-- <div class="hint" ng-if="showHints">###-##-####</div> -->
+
+                            <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                                <div ng-message="pattern" style="text-align: center;">Son 8 dígitos y números.</div>
+                            </div>
+                        </md-input-container>
+                        <div class="keypad-numbers">
+                            <table>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/0.svg" click-mark="" alt="" ng-click="ctrl.addNumber(0)">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/1.svg" click-mark="" alt="" ng-click="ctrl.addNumber(1)">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/2.svg" click-mark="" alt="" ng-click="ctrl.addNumber(2)">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/delete.svg" click-mark="" alt="" ng-click="ctrl.deletenumber()">
+                                    </div>
+                                </tr>
+
+                            </table>
+                            <table>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/3.svg" click-mark="" alt="" ng-click="ctrl.addNumber(3)">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/4.svg" click-mark="" alt="" ng-click="ctrl.addNumber(4)">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/5.svg" click-mark="" alt="" ng-click="ctrl.addNumber(5)">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/clean.svg" click-mark="" alt="" ng-click="ctrl.clearnumbre()">
+                                    </div>
+                                </tr>
+
+                            </table>
+                            <table>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/6.svg" click-mark="" alt="" ng-click="ctrl.addNumber(6)">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/7.svg" click-mark="" alt="" ng-click="ctrl.addNumber(7)">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/8.svg" click-mark="" alt="" ng-click="ctrl.addNumber(8)">
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="keypad-digit">
+                                        <img ng-src="static/img/keypanel/9.svg" click-mark="" alt="" ng-click="ctrl.addNumber(9)">
+                                    </div>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <br>
+                        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                            <md-button flex="50" class="md-raised" type="submit" ng-disabled="userForm.$invalid || STADO">{{STADOMENSAJE}}</md-button>
+                        </section>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+            var interval = setInterval(function() {
+                var momentNow = moment();
+                $('#date').html(momentNow.format('dddd').substring(0, 3).toUpperCase() + ' - ' + momentNow.format('DD MMMM, YYYY'));
+                $('#time').html(momentNow.format('hh:mm:ss A'));
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>

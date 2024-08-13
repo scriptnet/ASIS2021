@@ -1,0 +1,12 @@
+<div id="clean-accordion" class="pan">
+    <div id="header-clean-accordion" ng-keypress="toggleOpen($event)">
+        <div tabindex="0" class="accordion-toggle tab-item-responsive tab-{{backgroundTab}}" ng-click="toggleOpen()" bcp-accordion-transclude="heading" ng-class="isOpen? 'active-header-accordion': ''">
+            <div class="tab-content">{{heading}}</div>
+        </div>
+    </div>
+    <div id="body-clean-accordion" class="collapse" collapse="!isOpen">
+        <div class="tab-content">
+            <div ng-transclude></div>
+        </div>
+    </div>
+</div>

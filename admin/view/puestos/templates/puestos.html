@@ -1,0 +1,241 @@
+<section _ngcontent-c9 class="container list-schedule-transfer">
+    <div _ngcontent-c9="" class="col-12 transfers-title">
+        Listado De Puestos
+    </div>
+    <!-- <div class="row" ng-if="cargando1">
+        <div class="col-12 col-md-12 products-container-responsive">
+            <div class="spinner">
+                <img src="static/img/spinner/spinner.svg" alt="spinner">
+            </div>
+        </div>
+    </div> -->
+
+    <!-- ng-if="!cargando1" -->
+    <div class="row">
+
+        <div class="col-12 col-md-12 products-container-responsive">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-10 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">Puestos</h3>
+
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div _ngcontent-c15 class="col-2">
+                        <md-button class="md-raised" type="button" ng-click="nuevoPuesto()">Nuevo</md-button>
+                    </div>
+
+
+                </div>
+
+
+                <div class="accounts-m-container-uncollapsed ">
+                    <div class="content-card ">
+
+                        <table role="table " class="table table-bordered ">
+                            <thead role="rowgroup ">
+                                <tr role="row ">
+                                    <th role="columnheader ">#</th>
+                                    <th role="columnheader ">CARGO TÍTULO</th>
+                                    <th role="columnheader ">TARIFA POR HORA</th>
+                                    <th role="columnheader ">CATEGORIA</th>
+                                    <th role="columnheader ">OPCIONES</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody role="rowgroup ">
+
+                                <tr role="row " ng-repeat="puesto in pustosAll ">
+
+                                    <td role="cell ">{{puesto.id_Posicion}}</td>
+                                    <td role="cell ">{{puesto.P_Descripcion}}</td>
+                                    <td role="cell ">{{puesto.P_Tarifa | currency: "S/."}}</td>
+                                    <td role="cell ">{{puesto.PosCategoria}}</td>
+                                    <!-- <td role="cell ">
+                                        <div class=" d-flex flex-wrap justify-content-center ">
+
+                                            <a href=" "><i class="icon bcp-calendar-f six-digit-password-icon " clickoutside=" " triggers=" " data-toggle="modal " data-target="#exampleModal "></i></a>
+
+                                        </div>
+
+                                    </td> -->
+                                    <td role="cell ">
+                                        <!-- <md-button class="md-raised " style="min-height: 26px; line-height: 26px; " data-toggle="modal " data-target="#exampleModal ">EDITAR</md-button> -->
+                                        <a href=""><i class="icon bcp-pen-o six-digit-password-icon " ng-click="nuevoPuesto(puesto)" clickoutside=" " triggers=" "></i></a>
+                                        <!-- <a href=" "><i class="icon bcp-trash-o six-digit-password-icon " clickoutside=" " triggers=" "></i></a> -->
+                                    </td>
+
+                                </tr>
+
+                                <div class="loader-medium" ng-show="cargando1">
+                                    <div class="content-medium">
+                                        <div class="spinnerV2"></div>
+                                        <div class="MessErr" ng-if="actualizar">
+                                            {{messajeErr}}
+                                            <br>
+                                            <button _ngcontent-c101="" type="button" ng-click="calldataPuestos()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <div class=" ">
+                            <section layout="row " layout-sm="column " layout-align="center center " layout-wrap class="layout-wrap layout-sm-column layout-align-center-center layout-row " style="justify-content: flex-end; ">
+                                <div style="padding-right: 15px; padding-bottom: 15px;">
+                                    Total: {{paginacion.conteo}}
+                                </div>
+
+                                <nav aria-label="Page navigation example ">
+
+                                    <ul class="pagination ">
+                                        <li class="page-item " ng-class="{disabled:  paginacion.pag_anterior == paginacion.total_paginas }">
+                                            <a class="page-link " href="" ng-click="calldataPuestos(queryPuestos.page = paginacion.pag_anterior)" aria-label="Previous ">
+                                                <span aria-hidden="true ">&laquo;</span>
+                                                <span class="sr-only ">Previous</span>
+                                            </a>
+                                        </li>
+
+                                        <!-- <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+
+                                        <li class="page-item" ng-class="{disabled:  paginacion.pag_siguiente == 1 }">
+                                            <a class="page-link " href="" ng-click="calldataPuestos(queryPuestos.page = paginacion.pag_siguiente)" aria-label="Next ">
+                                                <span aria-hidden="true ">&raquo;</span>
+                                                <span class="sr-only ">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </section>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<div class="modal fade " id="exampleModal " tabindex="-1 " role="dialog " aria-labelledby="exampleModalLabel " aria-hidden="true ">
+    <div class="modal-dialog " role="document ">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="exampleModalLabel ">Modal title</h5>
+                <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
+                <span aria-hidden="true ">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body ">
+                ...
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-secondary " data-dismiss="modal ">Close</button>
+                <button type="button " class="btn btn-primary ">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+
+<div class="modal fade" id="nuevo_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div _ngcontent-c19 class="modal-dialog  " role="document">
+        <form name="forma" ng-submit="guardarPuesto(puestoSele)">
+
+            <div _ngcontent-c19 class="modal-content">
+                <div class="modal-header">
+                    <div class="d-block blocking-type-modal"></div>
+                </div>
+
+                <div class="modal-body" style="text-align: left;">
+
+                    <div class="body-title">
+
+                        <h4 _ngcontent-c101="" class="fl-text-capitalize">{{editText}}</h4>
+
+                        <!-- <h3 _ngcontent-c101="" class="fl-text-capitalize">Definir hora de salida y entrada</h3> -->
+
+                    </div>
+
+                    <div _ngcontent-c101="" body="" class="body-content">
+
+
+                        <md-input-container class="md-block">
+                            <label>NOMBRE</label>
+                            <input type="text" md-maxlength="50" required md-no-asterisk name="P_Descripcion" ng-model="puestoSele.P_Descripcion">
+                            <div ng-messages="forma.P_Descripcion.$error">
+                                <div ng-message="required">Es requerido</div>
+                                <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>TARIFA POR HORA</label>
+                            <input type="text" md-maxlength="50" required md-no-asterisk name="P_Tarifa" ng-model="puestoSele.P_Tarifa">
+                            <div ng-messages="forma.P_Tarifa.$error">
+                                <div ng-message="required">Es requerido</div>
+                                <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                            </div>
+                        </md-input-container>
+
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-6 padreSelect">
+                                <label>CATEGORÍA</label>
+                                <div>
+
+                                    <select id="select2" class="selectpicker" ng-model="puestoSele.Categoria" title="Selecciona categoría" required>
+                                   
+                                            <option value="Empleado">Empleado</option>
+                                            <option value="ReemEmple">ReemEmple</option>
+                                           
+                                 
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="modal-footer d-flex flex-wrap justify-content-center">
+
+                                <button _ngcontent-c101="" type="button" class="btn btn-secondary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted" data-dismiss="modal">cancelar</button>
+                                <button _ngcontent-c101="" type="submit" ng-disabled="forma.$invalid" class="btn btn-primary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted">guardar</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+
+</div>

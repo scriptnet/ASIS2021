@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="SCRIPTNET">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SISTEMA | LOGIN</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<style>
+    * {
+        font-family: 'Raleway', sans-serif;
+    }
+    
+    .h-100vh {
+        height: 100vh !important;
+    }
+    
+    .card {
+        margin: 0 auto;
+        max-width: 400px;
+        border: none;
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    @media only screen and (max-width: 767px) {
+        body {
+            padding-top: 20px;
+        }
+        .card {
+            max-width: 70%;
+        }
+    }
+    
+    input[type="checkbox"] {
+        display: none;
+    }
+    
+    .custom-control-input:checked~.custom-control-label::before {
+        color: #FDFFFC !important;
+        border-color: #26A598 !important;
+        background-color: #26A598 !important;
+    }
+    
+    .text-center {
+        color: #FDFFFC !important;
+        background-color: #9b0000 !important;
+    }
+    
+    .btn-primary {
+        color: #FDFFFC;
+        background-color: #9b0000;
+        border-color: #9b0000;
+    }
+    
+    .btn-primary:hover {
+        background-color: #a22dee;
+        border-color: #a22dee;
+    }
+    
+    .card-header.display-4 {
+        font-size: 29px;
+    }
+    
+    .btn-primary:disabled {
+        color: #fff;
+        background-color: #bfbfbf;
+        border-color: #bfbfbf;
+    }
+</style>
+
+<body ng-controller="appController">
+    <script src="static/bower_components/angularjs/angular-1.7.6.js"></script>
+    <link rel="stylesheet" href="../static/bower_components/angular-material.css">
+    <link rel="stylesheet" href="../static/app.css">
+
+    <div class="tablagen full-width full-height">
+        <div class="fila">
+            <div class="fondo columna">
+            </div>
+
+            <div class="columna">
+                <div class="flex-100">
+                    <div class="container h-100vh">
+                        <div class="row row h-100 align-items-center justify-content-centerr">
+                            <div class="col align-self-cente ">
+                                <div class="card">
+                                    <div class="card-header text-center display-4">
+                                        Iniciar sesión
+                                    </div>
+                                    <div class="card-body">
+                                        <form name="form" ng-submit="dataSend(formData)">
+                                            <div class="form-group">
+                                                <label for="email">Usuario</label>
+                                                <input type="text" class="form-control" ng-model="formData.usuario" placeholder="Nombre de Usuario" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Contraseña</label>
+                                                <input type="password" class="form-control" ng-model="formData.pass" placeholder="Contraseña" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="form.$invalid || loginLoaging ">ENTRAR</button>
+                                        </form>
+                                        <div class="col-12" style="color: red;">
+                                            <center>
+                                                {{mensajes}}
+                                            </center>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script>
+        ! function(a) {
+            "use strict";
+
+            function b(a, c) {
+                a.loginLoaging = false;
+                a.dataSend = function(data) {
+                    a.loginLoaging = true;
+                    c.validar(data).then(function(res) {
+                        a.loginLoaging = false;
+                        console.log(res);
+                        
+
+                        if (res.data.err) {
+                            a.error = true;
+                            
+
+                            a.mensajes = res.data.mensaje;
+
+                        } else {
+
+                            window.location = res.data.url;
+                        }
+
+                    })
+                }
+            }
+
+            function c(a, b) {
+
+                function c(data) {
+
+                    var h = b.defer(),
+                        i = h.promise;
+                    return a({
+                        method: "POST",
+                        url: "api/post/post.verificaruser.php",
+                        data: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function successCallback(data) {
+                            // console.log(data);
+                            var f = {
+                                data: data.data,
+                                status: data.status,
+
+                            };
+
+                            h.resolve(f)
+                        },
+                        function errorCallback() {
+
+                        }), i
+                }
+
+
+                return {
+                    validar: c
+                }
+            }
+
+            a.module("SCRIPTNET", [])
+                .controller("appController", b)
+                .service("loginService", c),
+                b.$inject = ["$scope", "loginService"],
+                c.$inject = ["$http", "$q"]
+        }(angular)
+    </script>
+</body>
+
+</html>

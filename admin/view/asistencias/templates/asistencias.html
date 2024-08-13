@@ -1,0 +1,207 @@
+<section _ngcontent-c9 class="container list-schedule-transfer">
+    <div _ngcontent-c9="" class="col-12 transfers-title">
+        Asistencia
+    </div>
+
+    <div class="row" ng-if="cargando1">
+        <div class="col-12 col-md-12 products-container-responsive">
+
+            <div class="spinner">
+                <img src="static/img/spinner/spinner.svg" alt="spinner">
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-if="!cargando1">
+
+        <div class="col-12 col-md-12 products-container-responsive" style="margin-bottom: 0px; ">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-8 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">BUSCAR</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div _ngcontent-c15 class="col-4">
+                        <div style="    text-align: right; padding-right: 30px;">
+                            <a href="" ng-click="llamarAsistencia()"><i class="icon bcp-turn-o six-digit-password-icon " clickoutside=" " triggers=" "></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accounts-m-container-uncollapsed">
+                    <div class="content-card">
+
+                        <div class="row">
+                            <div class="col-12 col-md-3">
+                                <input date-range-picker class="form-control date-picker" type="text" ng-model="dateRangePicker.date" options="dateRangePicker.options" />
+                            </div>
+
+                            <div class="col-12 col-md-9">
+                                <div _ngcontent-c73="" class="search-component ">
+                                    <div _ngcontent-c73=" " class="search dropdown " style="padding: 0px">
+                                        <div _ngcontent-c73=" " class="form-group form-group2 form-group--relative form-group--stacked " style="margin-top: 0px; ">
+
+                                            <input _ngcontent-c73=" " type="text " placeholder="Buscar " ng-model="queryAsistencia.filter " name="buscar " autocomplete="off " class="form-control " style="padding: 4px 18px 0px 10px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12 col-md-12 products-container-responsive" style="margin-bottom: 0px; ">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-8 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">Planilla</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div _ngcontent-c15 class="col-4">
+                        <div style="    text-align: right; padding-right: 30px;">
+                            <a href="" ng-click="printSPlanilla()"><i class="icon bcp-document-f six-digit-password-icon " clickoutside=" " triggers=" "></i></a>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="accounts-m-container-uncollapsed">
+                    <div class="content-card">
+
+
+
+                        <table role="table" class="table table-bordered">
+                            <thead role="rowgroup">
+                                <tr role="row">
+                                    <th role="columnheader">FECHA</th>
+                                    <th role="columnheader">EMPLEADO</th>
+                                    <th role="columnheader">H. DE INGRESO</th>
+                                    <th role="columnheader">H. MARCADA</th>
+                                    <th role="columnheader">H. DE SALIDA</th>
+                                    <th role="columnheader">H. MARCADA</th>
+                                    <th role="columnheader">H. TRABAJADAS</th>
+                                    <th role="columnheader">H. TARDE</th>
+                                    <!-- <th role="columnheader">HORARIO</th> -->
+                                    <!-- <th role="columnheader">OPCIONES</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody role="rowgroup">
+
+                                <tr role="row" ng-repeat="asistencia in asistenciaAll">
+                                    <td role="cell">{{asistencia.Fecha_Marcada | date:"dd-MM-y"}}</td>
+                                    <td role="cell">{{asistencia.E_Nombres}} {{asistencia.E_Apellidos}}</td>
+                                    <td role="cell">{{asistencia.H_Entrada | formatoHora}}</td>
+                                    <td role="cell" style="background-color: #a1a9b67a;">{{asistencia.A_Entrada_Marcada | formatoHora}}</td>
+                                    <td role="cell">{{asistencia.H_Salida | formatoHora}}</td>
+                                    <td role="cell" style="background-color: #a1a9b67a;">{{asistencia.A_Salida_Marcada | clearNull}}</td>
+                                    <td role="cell">{{asistencia.H_Hombre }}</td>
+                                    <td role="cell">{{asistencia.A_TARDANZA }}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="loader-medium" ng-show="cargando2">
+                        <div class="content-medium">
+                            <div class="spinnerV2"></div>
+                            <div class="MessErr" ng-if="actualizar">
+                                {{messajeErr}}
+                                <br>
+                                <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-12 col-md-12 products-container-responsive" style="margin-bottom: 0px; ">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-8 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">Remplazos</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div _ngcontent-c15 class="col-4">
+                        <div style="    text-align: right; padding-right: 30px;">
+                            <a href="" ng-click="printSRemplazos()"><i class="icon bcp-document-f six-digit-password-icon " clickoutside=" " triggers=" "></i></a>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="accounts-m-container-uncollapsed">
+                    <div class="content-card">
+
+                        <table role="table" class="table table-bordered">
+                            <thead role="rowgroup">
+                                <tr role="row">
+                                    <th role="columnheader">FECHA</th>
+                                    <th role="columnheader">NOMBRES Y APELLIDOS</th>
+                                    <th role="columnheader">INGRESO MARCADO</th>
+                                    <th role="columnheader">SALIDA MARCADA</th>
+
+                                    <th role="columnheader">H. TRABAJADAS</th>
+                                    <!-- <th role="columnheader">HORARIO</th> -->
+                                    <!-- <th role="columnheader">OPCIONES</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody role="rowgroup">
+
+                                <tr role="row" ng-repeat="asistenciaR in AssRemplazo">
+                                    <td role="cell">{{asistenciaR.Fecha_Marcada | date:"dd-MM-y"}}</td>
+                                    <td role="cell">{{asistenciaR.E_Nombres}} {{asistenciaR.E_Apellidos}} <br>
+                                        <span class="subTitle1">    {{asistenciaR.Reemplazado}} -> {{asistenciaR.PuestoRem}} </span>
+
+                                    </td>
+
+                                    <td role="cell" style="background-color: #a1a9b67a;">{{asistenciaR.A_Entrada_Marcada | formatoHora}}</td>
+
+                                    <td role="cell" style="background-color: #a1a9b67a;">{{asistenciaR.A_Salida_Marcada | clearNull}}</td>
+                                    <td role="cell">{{asistenciaR.H_Hombre }}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="loader-medium" ng-show="cargando2">
+                        <div class="content-medium">
+                            <div class="spinnerV2"></div>
+                            <div class="MessErr" ng-if="actualizar">
+                                {{messajeErr}}
+                                <br>
+                                <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,288 @@
+<section _ngcontent-c9 class="container list-schedule-transfer">
+    <div _ngcontent-c9="" class="col-12 transfers-title">
+        Agregar Empleado
+    </div>
+    <!-- <div _ngcontent-c9="" class="col-12 transfers-sub-title">
+        Agrega nuevos empleados
+    </div> -->
+    <div class="row" ng-if="cargando1">
+        <div class="col-12 col-md-12 products-container-responsive">
+
+            <div class="spinner">
+                <img src="static/img/spinner/spinner.svg" alt="spinner">
+            </div>
+        </div>
+    </div>
+
+    <form name="forma" ng-submit="enviarData(data)" ng-if="!cargando1">
+        <div class="row">
+            <div class="col-12 col-md-8 products-container-responsive">
+                <div _ngcontent-c14 class="home-wrapper-shadow">
+                    <div _ngcontent-c15 class="row product-title-row">
+                        <div _ngcontent-c15 class="col-12 product-title-col">
+                            <div _ngcontent-c15 class="bar-product-container">
+                                <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                                <div _ngcontent-c33 class="product-icon-title-container">
+                                    <h3 _ngcontent-c15 class="product-title">Datos Personales</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accounts-m-container-uncollapsed">
+                        <div class="content-card">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <md-input-container class="md-block">
+                                        <label>Nombres</label>
+                                        <input md-maxlength="30" required md-no-asterisk name="description" ng-model="data.Nombres" required>
+                                        <div ng-messages="forma.description.$error">
+                                            <div ng-message="required">Es requerido.</div>
+                                            <div ng-message="md-maxlength">Máximo son 30 caracteres.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <md-input-container class="md-block">
+                                        <label>Apellidos</label>
+                                        <input md-maxlength="50" required md-no-asterisk name="description" ng-model="data.Apellidos" required>
+                                        <div ng-messages="forma.description.$error">
+                                            <div ng-message="required">Es requerido.</div>
+                                            <div ng-message="md-maxlength">Máximo son 50 caracteres.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <md-input-container class="md-block">
+                                        <label>Dirección</label>
+                                        <input md-maxlength="100" required md-no-asterisk name="description" ng-model="data.Direccion" required>
+                                        <div ng-messages="forma.description.$error">
+                                            <div ng-message="required">Es requerido.</div>
+                                            <div ng-message="md-maxlength">Máximo son 100 caracteres.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div flex-gt-xs>
+                                        Fecha de Nacimiento:
+                                        <md-datepicker ng-model="data.date" md-current-view="year" md-placeholder="Seleccionar Fecha" required></md-datepicker>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <md-input-container class="md-block">
+                                        <label>N° DNI</label>
+                                        <input name="social" ng-model="data.dni" ng-pattern="/^[0-9]{8}$/" md-maxlength="8" minlength="8" required>
+                                        <div ng-messages="forma.social.$error">
+                                            <div ng-message="required">Es requerido.</div>
+                                            <div ng-message="pattern">Son 8 dígitos y números.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <md-input-container class="md-block">
+                                        <label>N° Celular</label>
+                                        <input name="Celular" ng-model="data.cel" ng-pattern="/^[0-9]{9}$/" md-maxlength="9" minlength="9" required>
+                                        <div ng-messages="forma.Celular.$error">
+                                            <div ng-message="required">Es requerido.</div>
+                                            <div ng-message="pattern">Son 9 dígitos y números.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <md-input-container class="md-block">
+                                        <label>Posición</label>
+                                        <!-- <md-select ng-model="data.posicion" required>
+                                            <md-option value="{{posi.id_Posicion}}" ng-repeat="posi in posiciondata">{{posi.P_Descripcion}}</md-option>
+
+                                        </md-select> -->
+
+
+                                        <md-select ng-model="data.posicion" data-md-container-class="selectdemoSelectHeader" multiple required>
+                                            <md-optgroup label="Empleados">
+                                                <md-option ng-value="posi" ng-repeat="posi in posiciondata | filter: {PosCategoria: 'Empleado'}" ng-disabled="isDisabled(posiciondata, posi)">{{posi.P_Descripcion}} {{posi.P_Tarifa | currency: 'S/ '}}</md-option>
+                                            </md-optgroup>
+
+                                            <!-- remplazo -->
+
+                                            <md-optgroup label="Reemplazo">
+                                                <md-option ng-value="posi" ng-repeat="posi in posiciondata | filter: {PosCategoria: 'ReemEmple'}" ng-disabled="isDisabled(posi, posi)">{{posi.P_Descripcion}} {{posi.P_Tarifa | currency: 'S/ '}}</md-option>
+                                            </md-optgroup>
+
+                                        </md-select>
+
+                                    </md-input-container>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <md-input-container class="md-block">
+                                        <label>Género</label>
+                                        <md-select ng-model="data.genero" required>
+                                            <md-option value="1">Hombre</md-option>
+                                            <md-option value="2">Mujer</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 products-container-responsive">
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div _ngcontent-c14 class="home-wrapper-shadow">
+                            <div _ngcontent-c15 class="row product-title-row">
+                                <div _ngcontent-c15 class="col-12 product-title-col">
+                                    <div _ngcontent-c15 class="bar-product-container">
+                                        <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                                        <div _ngcontent-c33 class="product-icon-title-container">
+                                            <h3 _ngcontent-c15 class="product-title">Guardar</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="md-block" flex-gt-xs ng-hide="showInputRem">
+                                <md-autocomplete placeholder="Colocar número de DNI" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in query(searchText)" md-selected-item="selectedItem" md-item-text="item.E_DNI" md-selected-item-change="selectedItemChange(item.E_DNI)"
+                                    style="margin: 6px 8px;">
+                                    <md-item-template>
+                                        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.E_DNI}} / {{item.E_Apellidos}} {{item.E_Nombres}}</span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        El DNI N°"{{searchText}}" no se encuentra.
+                                    </md-not-found>
+                                </md-autocomplete>
+
+                            </div> -->
+
+                            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                                <md-button class="md-raised" type="submit" ng-disabled="forma.$invalid">Guardar</md-button>
+
+                            </section>
+                            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                                <label style="color: red;">{{mensajeRes}}</label>
+                            </section>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12" style="padding-top: 15px;">
+                        <div _ngcontent-c14 class="home-wrapper-shadow">
+                            <div _ngcontent-c15 class="row product-title-row">
+                                <div _ngcontent-c15 class="col-12 product-title-col">
+                                    <div _ngcontent-c15 class="bar-product-container">
+                                        <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                                        <div _ngcontent-c33 class="product-icon-title-container">
+                                            <h3 _ngcontent-c15 class="product-title">API RENIEC</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 col-md-12">
+
+                                <md-input-container class="md-block">
+                                    <label>N° DNI</label>
+                                    <input name="social2" ng-model="dniApi" ng-pattern="/^[0-9]{8}$/" md-maxlength="8" minlength="8">
+                                    <div ng-messages="apiRe.social2.$error">
+                                        <div ng-message="required">Es requerido.</div>
+                                        <div ng-message="pattern">Son 8 dígitos y números.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                                <md-button class="md-raised" type="button" ng-click="apiRec(dniApi)" ng-disabled="!dniApi">Consultar</md-button>
+
+                            </section>
+                            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                                <label style="color: red;">{{messApi}}</label>
+                            </section>
+                            <div class="loader-medium" ng-show="cargando2">
+                                <div class="content-medium">
+                                    <div class="spinnerV2"></div>
+                                    <div class="MessErr" ng-if="actualizar">
+                                        {{messajeErr}}
+                                        <br>
+                                        <button _ngcontent-c101="" type="button" ng-click="apiRec(dniApi)" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </form>
+
+</section>
+
+<div class="modal fade" id="modal_Hora" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div _ngcontent-c19 class="modal-dialog  modal-custom" role="document">
+        <div _ngcontent-c19 class="modal-content">
+            <div class="modal-header">
+                <div class="d-block blocking-type-modal"></div>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="body-title">
+
+
+
+                    <h4 _ngcontent-c101="" class="fl-text-capitalize">Definir hora de salida y entrada</h4>
+
+                </div>
+
+                <div _ngcontent-c101="" body="" class="body-content">
+                    <p _ngcontent-c101="">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                ENTRADA:
+                                <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                SALIDA:
+                                <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                            </div>
+                        </div>
+
+
+
+                    </p>
+                </div>
+
+
+
+                <div class="modal-footer d-flex flex-wrap justify-content-center">
+
+
+                    <button _ngcontent-c101="" type="button" class="btn btn-primary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted" data-dismiss="modal">aceptar</button>
+                    <!-- <button _ngcontent-c101="" data-dismiss="modal" type="button" class="btn btn-secondary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted">Cerrar</button> -->
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

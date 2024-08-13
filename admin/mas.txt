@@ -1,0 +1,30 @@
+caja de vista rapida
+<div class="col-6 col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-stats cardKor">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-5 col-md-4">
+                                            <div class="icon-big text-center icon-warning">
+                                                <i class="icon bcp-face-happy-f text-danger" clickoutside=" " triggers=" "></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 col-md-8">
+                                            <div class="numbers">
+                                                <p class="card-category">Empleados <br> totales</p>
+                                                <span class="ng-binding ng-scope">2
+                                                                    </span>
+                                                <p>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <hr>
+                                    <div class="stats">
+                                        <a href="#/orden_trabajo/1" class="korilink"><i class="ti-plus"></i> Ver Empleados
+                                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>

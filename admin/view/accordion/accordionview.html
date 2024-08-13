@@ -1,0 +1,96 @@
+<div class="panelA" ng-controller="AccordionController">
+    <div class="">
+        <div class="panel-heading header-" ng-click="toggleOpen(); $parent.productsVM.showDetailProduct(data);" ng-class="isOpen? 'border-remove': ''">
+            <div class="accordion-toggle accounts">
+                <div class="row">
+
+
+                    <div class="col-12 col-lg-4 text-left pln product-detail-card-container">
+                        <a ng-class="isOpen? 'icon-toggle-down': 'icon-toggle-right'" class="icon-toggle-home mbn collapsed icon-toggle-right" style="">
+                            <h6>{{data.NOMBRES | uppercase}} {{data.APELLIDOS | uppercase}}</h6>
+                        </a>
+
+                        <span class="action-icons hidden-xs">
+                                <span>
+                                    <i class="fa fa-pencil mlm mrm icon-profile" aria-hidden="true" 
+                                    ng-click="$parent.productsVM.activeEditAliasProduct(data, isOpen, toggleOpen)">
+                                </i>
+                                </span> <span ng-hide="$parent.productsVM.getSonLogStatus()">
+                                    <i class="fa fa-eye-slash icon-profile" aria-hidden="true" ng-click="$parent.productsVM.disableProduct(data, isOpen, toggleOpen)"></i>
+                                    </span>
+                        </span>
+
+
+                    </div>
+                    <div class="col-12 col-lg-8 product-detail-card-container">
+                        <div class="row">
+                            <div class="col-4 col-md-4">
+                                <p class="blue-title-card">Horas Hombre</p>
+                                <p class="detail-text">{{data.H_HOMBRE}}</p>
+                            </div>
+                            <div class="col-4 col-md-4">
+                                <p class="blue-title-card">Horas Tarde</p>
+                                <p class="detail-text">{{data.H_TARDE}}</p>
+                            </div>
+                            <div class="col-4 col-md-4">
+                                <p class="blue-title-card">Adelanto</p>
+                                <p class="detail-text">{{data.ADELANTO | currency: 'S/ ' }}</p>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="product-balance-label">Salario Neto: {{data.TOTAL_NETO | currency: 'S/ ' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-xs-6 col-sm-4 text-right prn">
+                                <h4>1</h4>
+                               
+                            </div> -->
+
+                <div class="form-edit" ng-click="$parent.productsVM.disableAccordion()"><span>  </span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel-collapse collapse" uib-collapse="!isOpen">
+
+        <div class="panel-body body-005" style="text-align: left;">
+
+            <div ng-if="data.DETALLE.length == 0">
+                No hay nada que mostrar.
+            </div>
+
+            <div class="row" ng-repeat="detalle in data.DETALLE">
+                <div class="col-8 col-md-8">
+                    <p class="blue-title-card">Puesto</p>
+                    {{detalle.P_Descripcion}} ({{detalle.P_Tarifa | currency: 'S/ '}})
+                    <hr class="divide">
+                </div>
+                <!-- <div class="col-2 col-md-2">
+                    <p class="blue-title-card">Horas Hombre</p>
+                    {{detalle.TotalHoras}}
+                    <hr class="divide">
+                </div>
+                <div class="col-2 col-md-2">
+                    <p class="blue-title-card">Horas Tarde</p>
+                    {{detalle.TardanzaH}}
+                    <hr class="divide">
+                </div> -->
+                <div class="col-4 col-md-4">
+                    <p class="blue-title-card">Total Neto</p>
+                    {{detalle.TOTALNETO | currency: 'S/ '}}
+                    <hr class="divide">
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>

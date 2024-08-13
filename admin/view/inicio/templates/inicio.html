@@ -1,0 +1,138 @@
+<section _ngcontent-c9 class="container list-schedule-transfer">
+    <div _ngcontent-c9="" class="col-12 transfers-title">
+        ¡Bienvenido!
+    </div>
+    <div _ngcontent-c9="" class="col-12 transfers-sub-title">
+        Visualiza informes de asistencia.
+    </div>
+    <div class="row" ng-if="cargando1">
+        <div class="col-12 col-md-12 products-container-responsive">
+
+            <div class="spinner">
+                <img src="static/img/spinner/spinner.svg" alt="spinner">
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="!cargando1">
+        <div class="col-12 col-md-6  products-container-responsive">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-8 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">Informes</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div _ngcontent-c15 class="col-4">
+                        <div style="    text-align: right; padding-right: 30px;">
+                            <a href="" ng-click="llamarGraficos()"><i class="icon bcp-turn-o six-digit-password-icon " clickoutside=" " triggers=" "></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accounts-m-container-uncollapsed  col-12">
+                    <div class="content-card">
+                        <canvas id="line" class="chart chart-line" chart-data="dataGastos" chart-labels="labels" chart-series="seriesGastos" chart-colors="colors" chart-options="optionsGastos">
+
+                                </canvas>
+
+                        <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-colors="colors" chart-options="options">
+
+                        </canvas>
+                    </div>
+
+
+
+                    <!-- vacio -->
+
+                    <div class="loader-medium" ng-show="cargando2">
+                        <div class="content-medium">
+                            <div class="spinnerV2"></div>
+                            <div class="MessErr" ng-if="actualizar">
+                                {{messajeErr}}
+                                <br>
+                                <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="col-12 col-md-6  products-container-responsive">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-8 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title"> Laboral</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div _ngcontent-c15 class="col-4">
+                        <div style="    text-align: right; padding-right: 30px;">
+                            <a href="" ng-click="llamarDataLaboral()"><i class="icon bcp-turn-o six-digit-password-icon " clickoutside=" " triggers=" "></i></a>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="accounts-m-container-uncollapsed col-12">
+                    <div class="content-card">
+                        <div class="row align-items-center mb-4">
+                            <div class="col-6 u-ver-divider">
+                                <label class="d-block small text-muted mb-0">Empleados Totales:</label>
+                                <span class="font-weight-medium">{{countEmpleados}}</span>
+                            </div>
+                            <div class="col-6">
+                                <label class="d-block small text-muted mb-0">Empleados a Laborar Hoy</label>
+                                <span class="font-weight-medium">{{CountEmpleadosLaboran}}</span>
+                            </div>
+                        </div>
+                        <label ng-if="stado">{{mensaje}}</label>
+                        <div class="flex-100" ng-repeat="Labora in Laboran">
+                            <div class="RelojLabContent">
+                                <div class="mediaLab itemslabCenter">
+                                    <span class="u-icon u-icon-success--air u-icon--md rounded-circle mr-3">
+                                            <span class="u-icon__inner">{{Labora.E_Nombres | quitaLetra}}{{Labora.E_Apellidos | quitaLetra}}</span>
+                                    </span>
+                                    <div class="media-body">
+                                        <h4 class="h6 mb-0"> {{Labora.E_Nombres}} {{Labora.E_Apellidos}}</h4>
+                                        <small class="d-block text-secondary">E: {{Labora.H_Entrada | formatoHora}} - S: {{Labora.H_Salida | formatoHora}}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="loader-medium" ng-show="cargando3">
+                        <div class="content-medium">
+                            <div class="spinnerV2"></div>
+                            <div class="MessErr" ng-if="actualizar">
+                                {{messajeErr}}
+                                <br>
+                                <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

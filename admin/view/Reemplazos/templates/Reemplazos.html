@@ -1,0 +1,333 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12 col-xl-6 offset-xl-3">
+
+            <div ng-show="!showpuesto">
+                <div class="font-weight-bold text-center title titleColor" style="    margin-top: 86px; ">
+                    Agregar Reemplazo (BETA)
+                    <p class="subTitle1">
+                        Buscar reemplazo para:
+                    </p>
+                </div>
+
+
+
+                <md-autocomplete placeholder="Colocar número de DNI" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in query(searchText)" md-selected-item="selectedItem" md-item-text="item.E_DNI" md-selected-item-change="selectedItemChange(item)"
+                    style="margin: 66px 20px;">
+                    <md-item-template>
+                        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.E_DNI}} / {{item.E_Apellidos}} {{item.E_Nombres}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        "{{searchText}}" no se encuentra.
+                    </md-not-found>
+                </md-autocomplete>
+                <div class="font-weight-bold text-center title titleColor">
+                    Lista de Reemplazos
+                </div>
+
+                <table role="table" class="table table-bordered">
+                    <thead role="rowgroup">
+                        <tr role="row">
+                            <th role="columnheader">EMPLEADO</th>
+                            <th role="columnheader">REEMPLAZO</th>
+                            <th role="columnheader">DESACTIVAR</th>
+
+                        </tr>
+                    </thead>
+                    <tbody role="rowgroup">
+
+
+                        <tr role="row" ng-repeat="reem in ReemplazosData" _ngcontent-c57 ng-class="{'not-active': reem.Rem_disabled == '1'} ">
+                            <td role="cell">{{reem.E_Nombres}} {{reem.E_Apellidos}} <br> <span style="color: #002da5; FONT-SIZE: 12PX;">({{reem.P_Descripcion}})</span></td>
+                            <td role="cell">{{reem.REEMPLAZON}} <br> <span style="color: #002da5; FONT-SIZE: 12PX;">{{reem.TARIFAFROM | currency: 'S/ '}}</span></td>
+
+                            <td role="cell">
+                                <!-- <md-button class="md-raised" style="min-height: 26px; line-height: 26px;" data-toggle="modal" data-target="#exampleModal">EDITAR</md-button> -->
+                                <a href=""><i class="icon bcp-lock-f six-digit-password-icon" clickoutside="" triggers="" ng-click="DisabledRem(reem.id_Rem)"></i></a>
+                                <!-- <a href=""><i class="icon bcp-trash-o six-digit-password-icon" clickoutside="" triggers=""></i></a> -->
+                            </td>
+
+                        </tr>
+
+
+
+                        <div class="loader-medium" ng-show="cargando1">
+                            <div class="content-medium">
+                                <div class="spinnerV2"></div>
+                                <div class="MessErr" ng-if="actualizar">
+                                    {{messajeErr}}
+                                    <br>
+                                    <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div ng-if="globalContent">
+
+
+
+                <div ng-if="showpuesto">
+
+                    <div ng-show="!FinalShow">
+
+
+                        <div class="font-weight-bold text-center title titleColor" style="    margin-top: 50px; ">
+                            {{ReempazoQuery.Nombres}}
+                        </div>
+
+                        <!-- listar puestos -->
+                        <div class="container">
+                            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                                <div _ngcontent-c36="" class="content-empty-state-border">
+                                    <div _ngcontent-c36="" class="title">
+                                        <p _ngcontent-c36="" class="summary-title">
+                                            {{pasos.mess}} <span style="color: red;">{{mensajeVacio}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="row">
+                                <div _ngcontent-c57 class="col justify-content-lg-center mt-2">
+                                    <div _ngcontent-c57 class="">
+                                        <div class="row">
+                                            <div class="col-12 col-md-4" ng-repeat="puesto in puestosD" ng-show="!ReemplazoShow">
+
+                                                <div _ngcontent-c57 class="ml-40 my-2" ng-class="{'not-active': puesto.P_Descripcion == 'Reemplazo'}" style="margin-left: 30px;">
+                                                    <a href="" ng-click="llamarHorarioV2(puesto)" style="text-decoration: none;">
+                                                        <div _ngcontent-c58 class="card shadow2">
+                                                            <div _ngcontent-c58 class="card-body d-flex justify-content-around">
+                                                                <div _ngcontent-c58 class="d-flex mr-auto flex-sm-column wrapper">
+                                                                    <div _ngcontent-c58 class="text-center mr-3 ml-sm-2 mt-sm-3">
+                                                                        <img _ngcontent-c58 src="static/img/puestos/imagen1.svg" alt="terceros">
+                                                                    </div>
+                                                                    <div _ngcontent-c58="" class="mb-sm-2">
+                                                                        <p _ngcontent-c58="" class="card-text">{{puesto.P_Descripcion}}</p>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div _ngcontent-c58="" class="text-center arrow">
+                                                                    <i _ngcontent-c58="" class="icon bcp-angle-right-f d-block d-sm-none"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-12" ng-show="ReemplazoShow">
+                                                <md-autocomplete placeholder="Colocar número de DNI" md-selected-item="selectedItem2" md-search-text="searchText2" md-items="item in query(searchText2)" md-selected-item="selectedItem2" md-item-text="item.E_DNI" md-selected-item-change="selectedItemChangeFrom(item)"
+                                                    style="margin: 66px 20px;">
+                                                    <md-item-template>
+                                                        <span md-highlight-text="searchText2" md-highlight-flags="^i">{{item.E_DNI}} / {{item.E_Apellidos}} {{item.E_Nombres}}</span>
+                                                    </md-item-template>
+                                                    <md-not-found>
+                                                        "{{searchText2}}" no se encuentra.
+                                                    </md-not-found>
+                                                </md-autocomplete>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div ng-if="FinalShow">
+                    <form name="forma" ng-submit="saveData(ReempazoQuery)">
+
+
+                        <div class="font-weight-bold text-center title titleColor" style="    margin-top: 50px; ">
+                            Detalle:
+                        </div>
+                        <br>
+                        <br><br>
+                        <center>
+                            <strong> {{ReempazoQuery.NombresFrom | uppercase}}</strong> va a reemplazar a <strong> {{ReempazoQuery.Nombres | uppercase}}</strong> en el horario de <strong>{{ReempazoQuery.puestoNombre}}</strong>
+                            <md-input-container class="md-block">
+                                <label>Puesto</label>
+                                <md-select ng-model="ReempazoQuery.Posicion" required>
+
+                                    <md-optgroup label="Reemplazo">
+                                        <md-option ng-value="posi.id_Posicion" ng-repeat="posi in posiciondata | filter: {PosCategoria: 'ReemEmple'}">{{posi.P_Descripcion}}({{posi.P_Tarifa | currency: 'S/ '}})</md-option>
+                                    </md-optgroup>
+
+                                </md-select>
+                            </md-input-container>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div class=" d-flex flex-wrap justify-content-center">
+
+                                        <button _ngcontent-c101="" type="button" class="btn btn-secondary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted" ng-click="LimpiarDetalles(false)">cancelar</button>
+                                        <button _ngcontent-c101="" type="submit" ng-disabled="forma.$invalid" class="btn btn-primary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted">guardar</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <span style="color: red;">{{ErrorSave}}</span>
+                        </center>
+                    </form>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+
+<div class="vx_modalIsOpen" ng-class="{active: ModalActive == true}" tabindex="-1" aria-labelledby="js_modalHeader" aria-label="Modal Dialog">
+    <div class="col-12 col-md-12 col-xl-6 offset-xl-3">
+        <div class="">
+            <i class="icon bcp-x-f posicionX" ng-click="modalState(false)"></i>
+            <div class="font-weight-bold text-center title titleColor" style="    margin-top: 50px; ">
+                {{pasos.npaso}}
+            </div>
+
+            <!-- listar puestos -->
+            <div class="container" ng-if="showpuesto">
+                <div class="row">
+                    <div _ngcontent-c57 class="col justify-content-lg-center mt-2">
+                        <div _ngcontent-c57 class="">
+                            <div class="row">
+                                <div class="col-12 col-md-4" ng-repeat="puesto in puestosD" ng-show="!ReemplazoShow">
+
+                                    <div _ngcontent-c57 class="ml-40 my-2" ng-class="{'not-active': puesto.P_Descripcion == 'Reemplazo'}" style="margin-left: 30px;">
+                                        <a href="" ng-click="llamarHorarioV2(puesto)" style="text-decoration: none;">
+                                            <div _ngcontent-c58 class="card shadow2">
+                                                <div _ngcontent-c58 class="card-body d-flex justify-content-around">
+                                                    <div _ngcontent-c58 class="d-flex mr-auto flex-sm-column wrapper">
+                                                        <div _ngcontent-c58 class="text-center mr-3 ml-sm-2 mt-sm-3">
+                                                            <img _ngcontent-c58 src="static/img/puestos/imagen1.svg" alt="terceros">
+                                                        </div>
+                                                        <div _ngcontent-c58="" class="mb-sm-2">
+                                                            <p _ngcontent-c58="" class="card-text">{{puesto.P_Descripcion}}</p>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div _ngcontent-c58="" class="text-center arrow">
+                                                        <i _ngcontent-c58="" class="icon bcp-angle-right-f d-block d-sm-none"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-12" ng-show="ReemplazoShow">
+                                    <md-autocomplete placeholder="Colocar número de DNI" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in query(searchText)" md-selected-item="selectedItem" md-item-text="item.E_DNI" md-selected-item-change="selectedItemChange(item)"
+                                        style="margin: 66px 20px;">
+                                        <md-item-template>
+                                            <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.E_DNI}} / {{item.E_Apellidos}} {{item.E_Nombres}}</span>
+                                        </md-item-template>
+                                        <md-not-found>
+                                            "{{searchText}}" no se encuentra.
+                                        </md-not-found>
+                                    </md-autocomplete>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                    <div _ngcontent-c36="" class="content-empty-state-border">
+                        <div _ngcontent-c36="" class="title">
+                            <p _ngcontent-c36="" class="summary-title">
+                                {{pasos.mess}}. <span style="color: red;">{{mensajeVacio}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- <a id="modal_button" href="#">Click here!</a> -->
+<!-- $('#modal_button').click(function(e) {
+    $('.modal').addClass('active');
+    e.preventDefault();
+  });
+  
+  $('.modal').click(function(e) {
+    $('.modal').removeClass('active');
+    e.preventDefault();
+  }); -->

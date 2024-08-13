@@ -1,0 +1,131 @@
+<section _ngcontent-c9 class="container list-schedule-transfer">
+    <div _ngcontent-c9="" class="col-12 transfers-title">
+        Nombre de la Institución
+    </div>
+
+
+    <div class="row">
+        <div class="col-12 col-md-12 products-container-responsive" style="margin-bottom: 3px;">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-12 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 ">
+
+                            </div>
+                            <!-- <a href=" "><i class="icon bcp-pen-o six-digit-password-icon " clickoutside=" " triggers=" "></i></a> -->
+                            <div _ngcontent-c33 class="product-icon-title-container" style="margin-left: 6px;">
+
+                                <h3 _ngcontent-c15 class="product-title">Datos Personales:</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accounts-m-container-uncollapsed">
+                    <div class="content-card">
+                        <div class="row align-items-center mb-4">
+                            <div class="col-4 u-ver-divider">
+                                <label class="d-block small text-muted mb-0">Nombres y Apellidos</label>
+                                <span class="font-weight-medium">{{nombres}} {{apellidos}}</span>
+                            </div>
+                            <div class="col-4 u-ver-divider">
+                                <label class="d-block small text-muted mb-0">DNI</label>
+                                <span class="font-weight-medium">{{dni}}</span>
+                            </div>
+                            <div class="col-4">
+                                <label class="d-block small text-muted mb-0">Puesto</label>
+                                <span class="font-weight-medium">{{puesto}}</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-12 products-container-responsive" style="margin-bottom: 3px;">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-12 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 ">
+
+                            </div>
+                            <!-- <a href=" "><i class="icon bcp-pen-o six-digit-password-icon " clickoutside=" " triggers=" "></i></a> -->
+                            <div _ngcontent-c33 class="product-icon-title-container" style="margin-left: 6px;">
+
+                                <h3 _ngcontent-c15 class="product-title">Detalle:</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accounts-m-container-uncollapsed">
+                    <div class="content-card">
+                        <table role="table " class="table table-bordered ">
+                            <thead role="rowgroup ">
+                                <tr role="row ">
+
+                                    <th role="columnheader ">DESCRIPCIÓN DE CONCEPTOS</th>
+                                    <th role="columnheader ">TOTAL</th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody role="rowgroup ">
+                                <tr role="row">
+                                    <td>Tarifa por Hora </td>
+                                    <td>{{tarifa | currency: "S/. " }}</td>
+                                </tr>
+                                <tr role="row">
+                                    <td>Horas trabajadas </td>
+                                    <td>{{horasHombre }} H</td>
+                                </tr>
+                                <tr role="row">
+                                    <td>Sueldo Bruto </td>
+                                    <td>{{SueldoBruto |currency: "S/. " }}</td>
+                                </tr>
+                                <tr role="row">
+                                    <td>Tardanza Acumulada en Horas </td>
+                                    <td>{{tardeHombre}} H</td>
+                                </tr>
+                                <tr role="row">
+                                    <td>Descuento de Tardanza</td>
+                                    <td>{{DescuentoTarde | currency: "-S/. "}}</td>
+                                </tr>
+                                <tr role="row">
+                                    <td>Adelantos Acumulados</td>
+                                    <td>{{adelantosA | currency: "-S/. "}}</td>
+                                </tr>
+                                <tr role="row">
+                                    <td><strong> TOTAL NETO:</strong></td>
+                                    <td><strong>{{totalNeto |currency: "S/. "}}</strong></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        <strong>{{FECHAS}}</strong>
+                        <!-- <div class="row align-items-center mb-4">
+                            <div class="RelojLabContent">
+                                ss
+                            </div>
+                            <div class="col-6 u-ver-divider">
+                                <label class="d-block small text-muted mb-0">Nombres y Apellidos</label>
+                                <span class="font-weight-medium">{{nombres}} {{apellidos}}</span>
+                            </div>
+                            <div class="col-6">
+                                <label class="d-block small text-muted mb-0">DNI</label>
+                                <span class="font-weight-medium">{{dni}}</span>
+                            </div>
+                        </div> -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

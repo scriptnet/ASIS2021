@@ -1,0 +1,337 @@
+<section _ngcontent-c9 class="container list-schedule-transfer">
+    <div _ngcontent-c9="" class="col-12 transfers-title">
+        Listado De Adelantos
+    </div>
+
+
+    <div class="row">
+        <div class="col-12 col-md-12 products-container-responsive">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-10 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">Adelantos</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div _ngcontent-c15 class="col-2">
+                        <md-button class="md-raised" type="button" ng-click="nuevoAdelanto()">Nuevo</md-button>
+                    </div>
+                </div>
+
+
+                <div class="accounts-m-container-uncollapsed">
+                    <div class="content-card">
+                        <table role="table" class="table table-bordered">
+                            <thead role="rowgroup">
+                                <tr role="row">
+                                    <th role="columnheader">FECHA</th>
+                                    <th role="columnheader">NOMBRES</th>
+                                    <th role="columnheader">PRECIO</th>
+                                    <th role="columnheader">DESCRIPCIÓN</th>
+                                    <th role="columnheader">OPCIONES</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody role="rowgroup">
+                                <tr role="row" ng-repeat="adelanto in adelantos">
+                                    <td role="cell">{{adelanto.CA_fecha }}</td>
+                                    <td role="cell">{{adelanto.E_Nombres}} {{adelanto.E_Apellidos}}</td>
+                                    <td role="cell">{{adelanto.CA_Precio | currency: "S/."}}</td>
+                                    <td role="cell">{{adelanto.CA_Descripcion}}</td>
+
+
+
+                                    <td role="cell">
+                                        <!-- <md-button class="md-raised" style="min-height: 26px; line-height: 26px;" data-toggle="modal" data-target="#exampleModal">EDITAR</md-button> -->
+                                        <a href="" ng-click="editarAdelanto(adelanto)"><i class="icon bcp-pen-o six-digit-password-icon" clickoutside="" triggers=""></i></a>
+                                        <a href="" ng-click="EliminarAdelanto(adelanto.CA_id)"><i class="icon bcp-trash-o six-digit-password-icon" clickoutside="" triggers=""></i></a>
+                                    </td>
+
+                                </tr>
+                                <div class="loader-medium" ng-show="cargando1">
+                                    <div class="content-medium">
+                                        <div class="spinnerV2"></div>
+                                        <div class="MessErr" ng-if="actualizar">
+                                            {{messajeErr}}
+                                            <br>
+                                            <button _ngcontent-c101="" type="button" ng-click="calldataAdelanto()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <div class=" ">
+                            <section layout="row " layout-sm="column " layout-align="center center " layout-wrap class="layout-wrap layout-sm-column layout-align-center-center layout-row " style="justify-content: flex-end; ">
+                                <div style="padding-right: 15px; padding-bottom: 15px;">
+                                    Total: {{paginacion.conteo}}
+                                </div>
+
+                                <nav aria-label="Page navigation example ">
+
+                                    <ul class="pagination ">
+                                        <li class="page-item " ng-class="{disabled:  paginacion.pag_anterior == paginacion.total_paginas }">
+                                            <a class="page-link " href="" ng-click="calldataAdelanto(queryAdelanto.page = paginacion.pag_anterior)" aria-label="Previous ">
+                                                <span aria-hidden="true ">&laquo;</span>
+                                                <span class="sr-only ">Previous</span>
+                                            </a>
+                                        </li>
+
+                                        <!-- <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+
+                                        <li class="page-item" ng-class="{disabled:  paginacion.pag_siguiente == 1 }">
+                                            <a class="page-link " href="" ng-click="calldataAdelanto(queryAdelanto.page = paginacion.pag_siguiente)" aria-label="Next ">
+                                                <span aria-hidden="true ">&raquo;</span>
+                                                <span class="sr-only ">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </section>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- modal -->
+
+<div class="modal fade bd-example-modal-lg" id="nuevoAdelanto_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div _ngcontent-c19 class="modal-dialog  modal-lg" role="document">
+        <form name="forma" ng-submit="guardarDetalle(detalle)">
+
+            <div _ngcontent-c19 class="modal-content">
+                <div class="modal-header">
+                    <div class="d-block blocking-type-modal"></div>
+                </div>
+
+                <div class="modal-body" style="text-align: left;">
+
+                    <div class="body-title">
+
+                        <h4 _ngcontent-c101="" class="fl-text-capitalize">NUEVO ADELANTO</h4>
+
+                        <!-- <h3 _ngcontent-c101="" class="fl-text-capitalize">Definir hora de salida y entrada</h3> -->
+
+                    </div>
+
+                    <div _ngcontent-c101="" body="" class="body-content">
+
+                        <div ng-repeat="detalle in detalles">
+                            <div class="row">
+
+                                <div class="col-12 col-md-12">
+                                    <input type="hidden" required md-no-asterisk ng-model="detalle.E_DNI" disabled>
+                                    <center>
+                                        <label> {{detalle.E_Nombres}} {{detalle.E_Apellidos}}</label>
+                                        <!-- (
+                                        <select id="select2" ng-model="detalle.pisi" title="Selecciona puesto" required style="background: blanchedalmond;">
+                                                <option value="{{puestos.id_Posicion}}" ng-repeat="puestos in detalle.Puestos" >{{puestos.P_Descripcion}}</option>
+                                                
+                                          </select> ) -->
+
+                                        <a href="" ng-click="borrar_detalle( detalle)"><i class="icon bcp-trash-o six-digit-password-icon" clickoutside="" triggers=""></i></a>
+
+
+
+
+                                    </center>
+
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <md-input-container class="md-block">
+                                        <label>ADELANTO</label>
+                                        <input type="text" md-maxlength="50" required md-no-asterisk name="precio" ng-model="detalle.precio">
+                                        <div ng-messages="forma.precio.$error">
+                                            <div ng-message="required">Es requerido</div>
+                                            <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <md-input-container class="md-block">
+                                        <label>DESCRIPCIÓN</label>
+                                        <input type="text" md-maxlength="50" required md-no-asterisk name="descripcion" ng-model="detalle.descripcion">
+                                        <div ng-messages="forma.descripcion.$error">
+                                            <div ng-message="required">Es requerido</div>
+                                            <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <md-input-container class="md-block">
+                                    <label>DNI DEL EMPLEADO</label>
+                                    <input type="text" md-maxlength="8" md-no-asterisk name="P_Tarifa" ng-model="agregar.dniCod" list="names" autocomplete="off">
+                                    <div ng-messages="forma.P_Tarifa.$error">
+                                        <div ng-message="required">Es requerido</div>
+                                        <div ng-message="md-maxlength">maximo 8 caracteres.</div>
+                                    </div>
+                                </md-input-container>
+
+
+                                <datalist id="names" ng-model="name">
+                                     
+                                      <option ng-repeat="option in contacts | filter:search | limitTo:500" value="{{option.E_DNI}}">{{option.E_Nombres}} {{option.E_Apellidos}}</option>
+                                      
+                                    </datalist>
+
+                            </div>
+                            <div class="col-12 col-md-6" style="padding-top:15px;">
+                                <md-button class="md-raised" type="button" ng-click="buscarDni(agregar)">AGREGAR</md-button>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="modal-footer d-flex flex-wrap justify-content-center">
+
+                                <button _ngcontent-c101="" type="button" class="btn btn-secondary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted" data-dismiss="modal">cancelar</button>
+                                <button _ngcontent-c101="" type="button" ng-disabled="forma.$invalid" ng-click="guardarDetalle()" class="btn btn-primary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted">guardar</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+
+</div>
+
+
+
+
+<!-- editar -->
+
+
+<div class="modal fade" id="editar_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div _ngcontent-c19 class="modal-dialog  modal-custom" role="document">
+        <form name="forma2" ng-submit="guardarAdelanto(adelantoSelect)">
+
+            <div _ngcontent-c19 class="modal-content">
+                <div class="modal-header">
+                    <div class="d-block blocking-type-modal"></div>
+                </div>
+
+                <div class="modal-body" style="text-align: left;">
+
+                    <div class="body-title">
+
+                        <h4 _ngcontent-c101="" class="fl-text-capitalize">Editar Adelanto</h4>
+                        <center><label>{{adelantoSelect.E_Nombres}} {{adelantoSelect.E_Apellidos}}</label></center>
+                        <!-- <h3 _ngcontent-c101="" class="fl-text-capitalize">Definir hora de salida y entrada</h3> -->
+
+                    </div>
+
+                    <div _ngcontent-c101="" body="" class="body-content">
+
+
+                        <md-input-container class="md-block">
+                            <label>ADELANTO</label>
+                            <input type="text" md-maxlength="50" required md-no-asterisk name="CA_Precio" ng-model="adelantoSelect.CA_Precio">
+                            <div ng-messages="forma2.CA_Precio.$error">
+                                <div ng-message="required">Es requerido</div>
+                                <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>DESCRIPCIÓN</label>
+                            <input type="text" md-maxlength="50" required md-no-asterisk name="CA_Descripcion" ng-model="adelantoSelect.CA_Descripcion">
+                            <div ng-messages="forma2.CA_Descripcion.$error">
+                                <div ng-message="required">Es requerido</div>
+                                <div ng-message="md-maxlength">Mínimo 5 caracteres.</div>
+                            </div>
+                        </md-input-container>
+
+
+
+
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="modal-footer d-flex flex-wrap justify-content-center">
+
+                                <button _ngcontent-c101="" type="button" class="btn btn-secondary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted" data-dismiss="modal">cancelar</button>
+                                <button _ngcontent-c101="" type="submit" ng-disabled="forma2.$invalid" class="btn btn-primary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted">guardar</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+
+</div>

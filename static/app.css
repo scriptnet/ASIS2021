@@ -1,0 +1,153 @@
+.full-height {
+    height: 100vh;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.tablagen {
+    display: table;
+}
+
+.tablagen .fila {
+    display: table-row-group;
+    width: 100%;
+    height: 100vh;
+}
+
+.tablagen .fila .columna {
+    display: table-cell;
+}
+
+.tablagen .fila .columna {
+    display: table-cell;
+}
+
+.fondo {
+    width: 59%;
+    background-image: url("img/registro-de-control-asistencia.png");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 1024px) {
+    .fondo {
+        display: none !important;
+    }
+}
+
+
+/* lado derecho */
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+
+/* FORM */
+
+.title-color {
+    font-family: Sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+    line-height: 0;
+    color: #b30404;
+}
+
+.title-color-date {
+    font-family: Sans-serif;
+    font-size: 20px;
+    font-weight: 0;
+    line-height: 0;
+    color: #b30404;
+}
+
+.centrado-form {
+    padding: 90px;
+    padding-top: 30px;
+}
+
+
+/* key pad */
+
+.keypad-numbers {
+    text-align: center;
+}
+
+.keypad-container {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.keypad-container {
+    margin: 0 auto;
+}
+
+.keypad-digit {
+    display: inline-block;
+    margin-bottom: 1px;
+    margin-right: 3px;
+}
+
+.keypad-numbers .keypad-digit img {
+    height: 60px;
+    width: 60px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.keypad-numbers .keypad-digit img:hover {
+    cursor: pointer;
+}
+
+.keypad-numbers .keypad-digit img:hover {
+    cursor: pointer;
+}
+
+.mrn,
+.mhn,
+.man {
+    margin-right: 0px !important;
+}
+
+.md-block input:disabled {
+    color: #b30404;
+}

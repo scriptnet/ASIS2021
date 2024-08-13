@@ -1,0 +1,377 @@
+<section _ngcontent-c9 class="container list-schedule-transfer">
+    <div _ngcontent-c9="" class="col-12 transfers-title">
+        Nómina de sueldos
+    </div>
+    <div class="row" ng-if="cargando1">
+        <div class="col-12 col-md-12 products-container-responsive">
+
+            <div class="spinner">
+                <img src="static/img/spinner/spinner.svg" alt="spinner">
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-if="!cargando1">
+
+
+
+
+
+        <div class="col-12 col-md-8 products-container-responsive" style="margin-bottom: 3px;">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-8 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">Sueldos Planilla</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div _ngcontent-c15 class="col-4">
+                        <div style="    text-align: right; padding-right: 30px;">
+                            <a href="" ng-click="calldataAdelanto()"><i class="icon bcp-turn-o six-digit-password-icon" clickoutside=" " triggers=" "></i></a>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="accounts-m-container-uncollapsed">
+
+                    <div class="content-card">
+                        <div class="row">
+                            <div class="col-12 col-md-3">
+                                <input date-range-picker class="form-control date-picker" type="text" ng-model="dateRangePicker.date" options="dateRangePicker.options" />
+                            </div>
+
+                            <div class="col-12 col-md-9">
+                                <div _ngcontent-c73="" class="search-component ">
+                                    <div _ngcontent-c73=" " class="search dropdown " style="padding: 0px">
+                                        <div _ngcontent-c73=" " class="form-group form-group2 form-group--relative form-group--stacked " style="margin-top: 0px; ">
+
+                                            <input _ngcontent-c73=" " type="text " placeholder="Buscar " ng-model="queryNsueldos.filter " name="buscar " autocomplete="off " class="form-control " style="padding: 4px 18px 0px 10px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+
+
+                        <!-- <div class="col-12">
+                            <div class="row detail-summary-table-header">
+                                <p class="col date">
+                                    Nombres y Apellidos
+                                </p>
+
+                                <p class="col description-m">
+                                    Descripción / Monto
+                                </p>
+                                <p class="col description-td">
+                                    Descripción
+                                </p>
+                            </div>
+                        </div> -->
+
+
+
+
+                        <dre-accordion class="subtitleA text-center">
+                            <div class="col-12 col-md-12" style="padding-right: 0px; padding-left: 0px;">
+                                <div class="loader-medium" ng-show="cargando2">
+                                    <div class="content-medium">
+                                        <div class="spinnerV2"></div>
+                                        <div class="MessErr" ng-if="actualizar">
+                                            {{messajeErr}}
+                                            <br>
+                                            <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <dre-accordion-group ng-repeat="empleados in empleados" data="empleados" template-url="view/accordion/accordionview.html">
+
+                                </dre-accordion-group>
+                            </div>
+
+                        </dre-accordion>
+                        <!-- <div class="col-12" style="padding-right: 0px; padding-left: 0px;">
+                            <table role="table " class="table table-bordered ">
+                                <thead role="rowgroup ">
+                                    <tr role="row ">
+                                        <th role="columnheader ">EMPLEADO</th>
+                                        <th role="columnheader ">SUELDO BRUTO</th>
+                                        <th role="columnheader ">TARDANZA ACUMULADA (Horas)</th>
+                                        <th role="columnheader ">ADELANTO EN EFECTIVO</th>
+                                        <th role="columnheader ">DESCUENTO</th>
+                                        <th role="columnheader ">SALARIO NETO</th>
+                                        <th role="columnheader ">OPCIONES</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody role="rowgroup ">
+                                    <tr role="row " ng-repeat="sueldo in Sueldos ">
+                                        <td role="cell ">{{sueldo.Nombres }} {{sueldo.Apellidos}}</td>
+                                        <td role="cell ">{{sueldo.total1 | currency: "S/. "}} <br>
+                                            <span style="font-size: 10px; color: #000000; "> <strong>H. {{sueldo.HorasHombre}} x {{sueldo.tarifa | currency: "S/. "}} </strong> </span>
+                                        </td>
+                                        <td role="cell ">{{sueldo.tardeEnHoras }}</td>
+                                        <td role="cell ">{{sueldo.SoloAdelanto | currency: "S/. "}}</td>
+                                        <td role="cell ">{{sueldo.DescuentoTA | currency: "S/. "}} <br>
+                                            <span style="font-size: 10px; color: #000000; "> <strong>{{sueldo.SoloAdelanto | currency: "S/. "}} + {{sueldo.DescuentoTarde}} </strong> </span>
+                                        </td>
+
+                                        <td role="cell " style="background-color: #a1a9b67a; ">{{sueldo.TotalNeto | currency: "S/. "}}</td>
+
+                                        <td role="cell ">
+                                            <a href="#scriptnet/verDetalle/{{sueldo.DNI }}/{{sueldo.Nombres}}/{{sueldo.Apellidos}}/{{sueldo.tarifa}}/{{sueldo.HorasHombre}}/{{sueldo.tardeEnHoras}}/{{sueldo.SoloAdelanto}}/{{sueldo.DescuentoTarde}}/{{sueldo.TotalNeto}}/{{sueldo.total1}}/{{sueldo.FECHAS}}/{{sueldo.puesto}}"><i class="icon bcp-eye-f six-digit-password-icon " clickoutside=" " triggers=" "></i></a>
+                                        </td>
+                                
+
+                                    </tr>
+                                    <div class="loader-medium" ng-show="cargando2">
+                                        <div class="content-medium">
+                                            <div class="spinnerV2"></div>
+                                            <div class="MessErr" ng-if="actualizar">
+                                                {{messajeErr}}
+                                                <br>
+                                                <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div> -->
+
+
+                        <!-- <div class=" ">
+                            <section layout="row " layout-sm="column " layout-align="center center " layout-wrap class="layout-wrap layout-sm-column layout-align-center-center layout-row " style="justify-content: flex-end; ">
+                                <nav aria-label="Page navigation example ">
+                                    <ul class="pagination ">
+                                        <li class="page-item ">
+                                            <a class="page-link " href="# " aria-label="Previous ">
+                                                <span aria-hidden="true ">&laquo;</span>
+                                                <span class="sr-only ">Previous</span>
+                                            </a>
+                                        </li>
+
+
+
+                                        <li class="page-item ">
+                                            <a class="page-link " href="# " aria-label="Next ">
+                                                <span aria-hidden="true ">&raquo;</span>
+                                                <span class="sr-only ">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </section>
+
+                        </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4 products-container-responsive" style="margin-bottom: 3px;">
+            <div _ngcontent-c14 class="home-wrapper-shadow">
+                <div _ngcontent-c15 class="row product-title-row">
+                    <div _ngcontent-c15 class="col-8 product-title-col">
+                        <div _ngcontent-c15 class="bar-product-container">
+                            <div _ngcontent-c15 class="product-orange-bar ml-custom-1 "></div>
+                            <div _ngcontent-c33 class="product-icon-title-container">
+                                <h3 _ngcontent-c15 class="product-title">Resumen Total</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div _ngcontent-c15 class="col-4">
+                        <div style="    text-align: right; padding-right: 30px;">
+                            <a href="" ng-click="printS()"><i class="icon bcp-document-f six-digit-password-icon " clickoutside=" " triggers=" "></i></a>
+                        </div>
+
+
+                    </div> -->
+                </div>
+
+                <div class="accounts-m-container-uncollapsed">
+
+                    <div class="content-card">
+                        <div class="col-12 col-md-12" style="padding-right: 0px; padding-left: 0px;">
+                            <div class="loader-medium" ng-show="cargando2">
+                                <div class="content-medium">
+                                    <div class="spinnerV2"></div>
+                                    <div class="MessErr" ng-if="actualizar">
+                                        {{messajeErr}}
+                                        <br>
+                                        <button _ngcontent-c101="" type="button" ng-click="calldataEmpleados()" class="btn btn-primary fl-text-capitalize mx-auto">Intentar de nuevo</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <table role="table " class="table table-bordered ">
+                                <thead role="rowgroup ">
+                                    <tr role="row ">
+                                        <th role="columnheader ">DESCRIPCIÓN</th>
+                                        <th role="columnheader ">COSTO</th>
+                                    </tr>
+                                </thead>
+                                <tbody role="rowgroup ">
+                                    <tr role="row ">
+                                        <td role="cell ">Planilla Proyectada</td>
+                                        <td role="cell ">{{planillaProyecta | currency: "S/. "}}</td>
+                                    </tr>
+                                    <tr role="row ">
+                                        <td role="cell ">Planilla</td>
+                                        <td role="cell ">{{planilla | currency: "S/. "}}</td>
+                                    </tr>
+
+                                    <tr role="row " ng-repeat="servicio in servicios">
+                                        <td role="cell ">{{servicio.Serv_Descripcion}}</td>
+                                        <td role="cell ">{{servicio.Serv_Monto | currency: "S/. "}}</td>
+                                    </tr>
+                                    <tr role="row " style="background-color: #a1a9b67a; ">
+                                        <td role="cell "> <strong>Total</strong> </td>
+                                        <td role="cell "><strong>{{totalNetoServicios | currency: "S/. "}}</strong></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</section>
+
+<!-- modal -->
+
+<div class="modal fade bd-example-modal-lg " id="nuevoAdelanto_Modal " tabindex="-1 " role="dialog " aria-labelledby="exampleModalLabel " aria-hidden="true " data-backdrop="static " data-keyboard="false ">
+
+    <div _ngcontent-c19 class="modal-dialog modal-lg " role="document ">
+        <form name="forma " ng-submit="guardarDetalle(detalle) ">
+
+            <div _ngcontent-c19 class="modal-content ">
+                <div class="modal-header ">
+                    <div class="d-block blocking-type-modal "></div>
+                </div>
+
+                <div class="modal-body " style="text-align: left; ">
+
+                    <div class="body-title ">
+
+                        <h4 _ngcontent-c101=" " class="fl-text-capitalize ">NUEVO ADELANTO</h4>
+
+                        <!-- <h3 _ngcontent-c101=" " class="fl-text-capitalize ">Definir hora de salida y entrada</h3> -->
+
+                    </div>
+
+                    <div _ngcontent-c101=" " body=" " class="body-content ">
+
+                        <div ng-repeat="detalle in detalles ">
+                            <div class="row ">
+
+                                <div class="col-12 col-md-12 ">
+                                    <input type="hidden " required md-no-asterisk ng-model="detalle.E_DNI " disabled>
+                                    <center> <label> {{detalle.E_Nombres}} {{detalle.E_Apellidos}}</label> <a href=" " ng-click="borrar_detalle( detalle) "><i class="icon bcp-trash-o six-digit-password-icon " clickoutside=" " triggers=" "></i></a></center>
+
+
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-12 col-md-6 ">
+                                    <md-input-container class="md-block ">
+                                        <label>ADELANTO</label>
+                                        <input type="text " md-maxlength="50 " required md-no-asterisk name="precio " ng-model="detalle.precio ">
+                                        <div ng-messages="forma.precio.$error ">
+                                            <div ng-message="required ">Es requerido</div>
+                                            <div ng-message="md-maxlength ">Mínimo 5 caracteres.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-12 col-md-6 ">
+                                    <md-input-container class="md-block ">
+                                        <label>DESCRIPCIÓN</label>
+                                        <input type="text " md-maxlength="50 " required md-no-asterisk name="descripcion " ng-model="detalle.descripcion ">
+                                        <div ng-messages="forma.descripcion.$error ">
+                                            <div ng-message="required ">Es requerido</div>
+                                            <div ng-message="md-maxlength ">Mínimo 5 caracteres.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                        <div class="row ">
+                            <div class="col-12 col-md-6 ">
+                                <md-input-container class="md-block ">
+                                    <label>DNI DEL EMPLEADO</label>
+                                    <input type="text " md-maxlength="8 " md-no-asterisk name="P_Tarifa " ng-model="agregar.dniCod ">
+                                    <div ng-messages="forma.P_Tarifa.$error ">
+                                        <div ng-message="required ">Es requerido</div>
+                                        <div ng-message="md-maxlength ">maximo 8 caracteres.</div>
+                                    </div>
+                                </md-input-container>
+
+
+                            </div>
+                            <div class="col-12 col-md-6 " style="padding-top:15px; ">
+                                <md-button class="md-raised " type="button " ng-click="buscarDni(agregar) ">AGREGAR</md-button>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="row ">
+                        <div class="col-12 col-md-12 ">
+                            <div class="modal-footer d-flex flex-wrap justify-content-center ">
+
+                                <button _ngcontent-c101=" " type="button " class="btn btn-secondary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted " data-dismiss="modal ">cancelar</button>
+                                <button _ngcontent-c101=" " type="button " ng-disabled="forma.$invalid " ng-click="guardarDetalle() " class="btn btn-primary fl-text-capitalize col-10 col-md-4 mx-auto ng-star-inserted ">guardar</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+
+</div>
