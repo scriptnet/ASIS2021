@@ -44,6 +44,16 @@ BASE_HREF: "http://localhost/asistencia/admin/view/", (Vistas)
 BACKGROUNDPDF: (aqui va la imagen de fondo del pdf)
     
 ```
+## Usuario y contraseña
+
+```yaml
+   Usuario: SCRIPTNET
+   Contraseña: 123456
+    
+```
+
+## CONTÁCTAME 💬
+https://www.facebook.com/scriptnetperu/
 
 ## Usuario y contraseña
 
