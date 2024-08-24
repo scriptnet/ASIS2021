@@ -56,7 +56,7 @@ BACKGROUNDPDF: (aqui va la imagen de fondo del pdf)
 
 ```yaml
    Usuario: SCRIPTNET
-   Contraseña: cajlab12
+   Contraseña: 123456
     
 ```
 
