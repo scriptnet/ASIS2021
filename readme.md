@@ -52,9 +52,6 @@ BACKGROUNDPDF: (aqui va la imagen de fondo del pdf)
     
 ```
 
-## CONTÁCTAME 💬
-https://www.facebook.com/scriptnetperu/
-
 ## Usuario y contraseña
 
 ```yaml
@@ -62,4 +59,7 @@ https://www.facebook.com/scriptnetperu/
    Contraseña: cajlab12
     
 ```
+
+## CONTÁCTAME 💬
+https://www.facebook.com/scriptnetperu/
 
