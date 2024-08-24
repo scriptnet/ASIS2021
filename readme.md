@@ -52,14 +52,6 @@ BACKGROUNDPDF: (aqui va la imagen de fondo del pdf)
     
 ```
 
-## Usuario y contraseña
-
-```yaml
-   Usuario: SCRIPTNET
-   Contraseña: 123456
-    
-```
-
 ## CONTÁCTAME 💬
 https://www.facebook.com/scriptnetperu/
 
